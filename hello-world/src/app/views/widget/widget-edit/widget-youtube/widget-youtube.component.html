@@ -1,0 +1,69 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid row">
+
+    <div class="navbar-text pull-left">
+      <a routerLink="../" class="cl-text-black cl-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+      </a>
+    </div>
+    <div class="navbar-text pull-right">
+      <button routerLink="../" (click)="f.ngSubmit.emit()" [disabled]="!f.valid" class="btn btn-link cl-icon-padding cl-text-black">
+          <span class="glyphicon glyphicon-ok">
+          </span>
+      </button>
+    </div>
+    <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+      Widgets Edit
+    </a>
+  </div>
+</nav>
+
+<div class="container">
+  <form (ngSubmit)="update()" #f="ngForm">
+    <div class="form-group">
+      <label for="youtube-name">Name</label>
+      <input type="text" class="form-control" id="youtube-name" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="youtube-text">Text</label>
+      <input [(ngModel)]="text"
+             name="text"
+             type="text"
+             class="form-control"
+             id="youtube-text"
+             placeholder="{{widget.text}}">
+    </div>
+    <div class="form-group">
+      <label for="youtube-URL">URL</label>
+      <input [(ngModel)]="url"
+             name="url"
+             type="text"
+             class="form-control"
+             id="youtube-URL"
+             placeholder="{{widget.url}}">
+    </div>
+    <div class="form-group">
+      <label for="youtube-width">Width</label>
+      <input [(ngModel)]="width"
+             name="width"
+             type="text"
+             class="form-control"
+             id="youtube-width"
+             placeholder="{{widget.width}}">
+    </div>
+  </form>
+  <button routerLink="../" (click)="delete()" class="btn btn-danger btn-block" href="#">Delete</button>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid row">
+    <div class="pull-right navbar-text">
+
+      <a href="../../../../../.." class="cl-icon-padding">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,63 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid row">
+
+    <div class="navbar-text pull-left">
+      <a routerLink="../" class="cl-text-black cl-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+      </a>
+    </div>
+    <div class="navbar-text pull-right">
+      <button routerLink="../" class="btn btn-link cl-icon-padding cl-text-black" (click)="f.ngSubmit.emit()" [disabled]="!f.valid">
+          <span class="glyphicon glyphicon-ok">
+          </span>
+      </button>
+    </div>
+    <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+      Widgets Edit
+    </a>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <form (ngSubmit)="update()" #f="ngForm">
+    <div class="form-group">
+      <label for="heading-name">Name</label>
+      <input type="text"
+             class="form-control"
+             id="heading-name"
+             placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="heading-text">Text</label>
+      <input [(ngModel)]="text"
+             name="text"
+             type="text"
+             class="form-control"
+             id="heading-text"
+             placeholder="{{widget.text}}">
+    </div>
+    <div class="form-group">
+      <label for="heading-size">Size</label>
+      <input [(ngModel)]="size"
+             name="size"
+             type="text"
+             class="form-control"
+             id="heading-size"
+             placeholder="{{widget.size}}">
+    </div>
+  </form>
+  <a routerLink="../" (click)="delete()" class="btn btn-danger  btn-block">Delete</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid row">
+    <div class="pull-right navbar-text">
+
+      <a routerLink="../../../../../.." class="cl-icon-padding">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+
+    </div>
+  </div>
+</nav>

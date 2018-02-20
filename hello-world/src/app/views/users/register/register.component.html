@@ -1,3 +1,43 @@
-<p>
-  register works!
-</p>
+<div class="container-fluid">
+  <div *ngIf="pwNotMatch"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+
+  <h1>Register</h1>
+
+  <form (ngSubmit)="register()" #f="ngForm">
+    <!--<label>UserName</label>-->
+    <input type="text"
+           class="form-control"
+           placeholder="username"
+           name="username"
+           id="username"
+           ngModel
+           required
+           #username="ngModel"/>
+
+    <!--<label>Password</label>-->
+    <input type="password"
+           class="form-control"
+           placeholder="password"
+           name="password"
+           id="password"
+           ngModel
+           required
+           #password="ngModel"/>
+
+    <!--<label>Verify Password</label>-->
+    <input type="password"
+           class="form-control"
+           placeholder="verify password"
+           name="verifypw"
+           id="verifypw"
+           ngModel
+           required
+           #verifypw="ngModel"/>
+
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Register</button>
+    <button class="btn btn-danger btn-block" type="button" (click)="login()">Cancel</button>
+  </form>
+</div>

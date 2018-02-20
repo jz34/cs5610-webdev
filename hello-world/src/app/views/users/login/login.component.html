@@ -1,6 +1,36 @@
-<p>
-  login works!
-</p>
+<div class="container-fluid">
 
+  <div *ngIf="errorFlag"
+             class="alert alert-danger">
+  {{errorMsg}}
+</div>
 
-<a class="btn btn-primary btn-block" (click)="login(username, password)"
+  <h1>Login</h1>
+
+  <form (ngSubmit) = "login()" #f="ngForm">
+    <!--<label>Username</label>-->
+    <input type="text"
+           class="form-control"
+           placeholder="username"
+           name="username"
+           ngModel
+           required
+           #username="ngModel"/>
+
+    <!--<label>Password</label>-->
+    <input type="password"
+           class="form-control"
+           placeholder="password"
+           name="password"
+           ngModel
+           required
+           #password="ngModel"/>
+
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+      Please enter username!
+    </span>
+
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Login</button>
+    <button class="btn btn-success btn-block" type="button" (click)="register()">Register</button>
+  </form>
+</div>

@@ -1,3 +1,57 @@
-<p>
-  profile works!
-</p>
+<nav class="navbar cl-blue-navbar">
+  <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+    Profile
+  </a>
+
+  <button  class="btn btn-link navbar-link navbar-text pull-right cl-text-white cl-icon-padding" (click)="f.ngSubmit.emit()">
+    <span class="glyphicon glyphicon-ok"></span>
+  </button>
+</nav>
+<div class="container-fluid">
+  <form (ngSubmit)="updateUser()" #f="ngForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input [(ngModel)]="username"
+             type="text"
+             name="username"
+             class="form-control"
+             id="username"
+             placeholder="Username"/>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input [(ngModel)]="email"
+             name="email"
+             type="email"
+             class="form-control"
+             id="email"
+             placeholder="xxxxxx@xxx.com"/>
+    </div>
+    <div class="form-group">
+      <label for="first-name">First Name</label>
+      <input [(ngModel)]="firstName"
+             type="text"
+             name="firstName"
+             class="form-control"
+             id="first-name"
+             placeholder="Russel">
+    </div>
+    <div class="form-group">
+      <label for="last-name">Last Name</label>
+      <input [(ngModel)]="lastName"
+             name="lastName"
+             type="text"
+             class="form-control"
+             id="last-name"
+             placeholder="Westbrook">
+    </div>
+
+    <button class="btn btn-primary btn-block" type="button" routerLink="./website">Website</button>
+    <button class="btn btn-danger btn-block" type="button" (click)="logout()">Logout</button>
+
+  </form>
+</div>
+
+<nav class="navbar navbar-fixed-bottom cl-blue-navbar">
+</nav>
