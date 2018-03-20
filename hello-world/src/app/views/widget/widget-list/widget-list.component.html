@@ -19,23 +19,32 @@
   </div>
 </nav>
 
+
+<div class="container container-padding" appSortable (newIndexes)="reorderWidgets($event)">
 <div *ngFor="let widget of widgets" class="container cl-container-padding">
   <div [ngSwitch]="widget.widgetType">
+
     <div *ngSwitchCase="'HEADER'">
-      <div class="pull-right">
-        <a href="#" class="pull-right">
-          <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </a>
-        <a routerLink="./{{widget.wgId}}">
-          <span class="glyphicon glyphicon-cog"></span>
-        </a>
+      <a class="pull-right">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </a>
+      <a routerLink="./{{widget.wgId}}" class="pull-right">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+
+      <div [ngSwitch]="widget.size">
+        <h1 *ngSwitchCase="1">{{widget.text}}</h1>
+        <h2 *ngSwitchCase="2">{{widget.text}}</h2>
+        <h3 *ngSwitchCase="3">{{widget.text}}</h3>
+        <h4 *ngSwitchCase="4">{{widget.text}}</h4>
+        <h5 *ngSwitchCase="5">{{widget.text}}</h5>
+        <h6 *ngSwitchCase="6">{{widget.text}}</h6>
       </div>
-      <h1>{{widget.text}}</h1>
     </div>
 
     <div *ngSwitchCase="'IMAGE'">
       <div>
-        <a href="#" class="pull-right">
+        <a class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger"></span>
         </a>
         <a routerLink="./{{widget.wgId}}" class="pull-right">
@@ -50,7 +59,7 @@
     <div *ngSwitchCase="'YOUTUBE'">
       <div class="embed-responsive embed-responsive-16by9">
         <iframe width="640" height="360" [src]=getURL(widget.url) frameborder="0" allowfullscreen></iframe>
-        <a routerLink="./{{widget.wgId}}" class="pull-right">
+        <a class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger" style="background-color: white"></span>
         </a>
         <a routerLink="./{{widget.wgId}}" class="pull-right">
@@ -58,8 +67,30 @@
         </a>
       </div>
     </div>
-  </div>
 
+
+    <div *ngSwitchCase="'TEXT'">
+      <a class="pull-right">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </a>
+      <a routerLink="./{{widget.wgId}}" class="pull-right">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+      {{widget.text}}
+    </div>
+
+    <div *ngSwitchCase="'HTML'">
+      <a class="pull-right">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </a>
+      <a routerLink="./{{widget.wgId}}" class="pull-right">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+      <div [innerHTML]="widget.text"></div>
+    </div>
+
+  </div>
+</div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -73,10 +104,10 @@
     </div>
 
     <div class="pull-left navbar-text">
-      <a href="#" class="cl-icon-padding cl-text-black">
+      <a routerLink="." class="cl-icon-padding cl-text-black">
         <span class="glyphicon glyphicon-play"></span>
       </a>
-      <a href="#" class="cl-icon-padding cl-text-black">
+      <a routerLink="." class="cl-icon-padding cl-text-black">
         <span class="glyphicon glyphicon-eye-open"></span>
       </a>
 

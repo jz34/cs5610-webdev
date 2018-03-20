@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
 import {User} from '../../../models/user.model.client';
 import {NgForm} from '@angular/forms';
-import { ViewChild } from '@angular/core';
+
 
 @Component({
   selector: 'app-login',
@@ -19,28 +19,20 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {}
 
-  /*login(username: String, password: String) {
-    //alert('username: ' + username);
-   // if (username === 'alice' && password == "qqq") {
-      const user: User = this.userService.findUserByCredential(username, password);
-      if (user) {
-        this.router.navigate(['/profile', user._id ]);
-      }
-   // }
-  }*/
-
   login() {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
     // alert(this.username);
 
-    const user: User = this.userService.findUserByCredential(this.username, this.password);
-    if (user) {
-      this.router.navigate(['/user', user.uid]);
-    } else {
-      this.errorFlag = true;
-      // alert(this.errorMsg);
-    }
+    this.userService.findUserByCredentials(this.username, this.password).subscribe(
+      (user: User) => {
+        this.errorFlag = false;
+        this.router.navigate(['/user', user.uid ]);
+        },
+      (error: any) => {
+        this.errorFlag = true;
+        }
+      );
   }
 
   register() {

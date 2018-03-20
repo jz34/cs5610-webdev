@@ -3,6 +3,8 @@ import {Widget} from '../../../../models/widget.model.client';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
+import {environment} from '../../../../../environments/environment';
+
 
 @Component({
   selector: 'app-widget-image',
@@ -12,51 +14,70 @@ import {WidgetService} from '../../../../services/widget.service.client';
 export class WidgetImageComponent implements OnInit {
   @ViewChild('f') widgetForm: NgForm;
   widget: Widget;
+  uid: String;
+  wid: String;
+  pid: String;
   wgId: String;
-  pageId: String;
-  text: String;
-  url: String;
-  width: String;
+  baseUrl: String;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
-              private widgetService: WidgetService) { }
+              private widgetService: WidgetService) {
+    this.widget = new Widget('',  'IMAGE', this.pid, '', '', '', '', false);
+  }
 
   update() {
-    this.widget.text = this.widgetForm.value.text;
-    this.widget.url = this.widgetForm.value.url;
-    this.widget.width = this.widgetForm.value.width;
-    this.widget.widgetType = 'IMAGE';
-    if (this.wgId !== undefined) { // check it's update or add new
-      this.widgetService.updateWidget(this.wgId, this.widget);
+    if (this.wgId === undefined) {
+      this.widgetService.createWidget(this.pid, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.router.navigate(['/user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+          // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
     } else {
-      this.widget = this.widgetService.createWidget(this.pageId, this.widget);
+      this.widgetService.updateWidget(this.widget).subscribe(
+        () => {
+          this.router.navigate(['/user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+          // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
     }
-    this.router.navigate(['../'], {relativeTo: this.activatedRoute});
   }
 
   delete() {
-    if (this.wgId !== undefined) {
-      this.widgetService.deleteWidget(this.wgId);
-    } else {
-      this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
-    }
+    this.widgetService.deleteWidget(this.wgId).subscribe(
+      () => {
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
 
   ngOnInit() {
+    this.baseUrl = environment.baseUrl;
     this.activatedRoute.params.subscribe(params => {
-      this.wgId = params['wgid'];
-      this.pageId = params['pid'];
+      this.uid = params['uid'];
+      this.pid = params['pid'];
+      this.wid = params['wid'];
+      this.wgId = params['wgId'];
+      if (this.wgId !== undefined) {
+        return this.widgetService.findWidgetById(this.wgId).subscribe(
+          (widget: Widget) => {
+            this.widget = widget;
+          }
+        );
+      }
     });
-
-    if (this.wgId !== undefined) {
-      this.widget = this.widgetService.findWidgetById(this.wgId);
-    } else {
-      this.widget = new Widget('', '', '', '', '', '', '');
-    }
-    this.text = this.widget.text;
-    this.url = this.widget.url;
-    this.width = this.widget.width;
   }
 
+  // 多余？
+  upload() {
+    this.widgetService.createWidget(this.pid, this.widget).subscribe(
+      (widget: Widget) => {
+        this.widget = widget;
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+        console.log(this.widget);
+      }
+    );
+  }
 }

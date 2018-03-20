@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
@@ -27,7 +27,7 @@
     </div>
     <div class="form-group">
       <label for="youtube-text">Text</label>
-      <input [(ngModel)]="text"
+      <input [(ngModel)]="widget.text"
              name="text"
              type="text"
              class="form-control"
@@ -36,7 +36,7 @@
     </div>
     <div class="form-group">
       <label for="youtube-URL">URL</label>
-      <input [(ngModel)]="url"
+      <input [(ngModel)]="widget.url"
              name="url"
              type="text"
              class="form-control"
@@ -45,7 +45,7 @@
     </div>
     <div class="form-group">
       <label for="youtube-width">Width</label>
-      <input [(ngModel)]="width"
+      <input [(ngModel)]="widget.width"
              name="width"
              type="text"
              class="form-control"

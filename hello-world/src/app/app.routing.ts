@@ -1,4 +1,5 @@
 import {Routes, RouterModule} from '@angular/router';
+import {ModuleWithProviders} from '@angular/core';
 import {LoginComponent} from './views/users/login/login.component';
 import {ProfileComponent} from './views/users/profile/profile.component';
 import {RegisterComponent} from './views/users/register/register.component';
@@ -15,6 +16,10 @@ import {WidgetHeaderComponent} from './views/widget/widget-edit/widget-header/wi
 import {WidgetImageComponent} from './views/widget/widget-edit/widget-image/widget-image.component';
 import {WidgetYoutubeComponent} from './views/widget/widget-edit/widget-youtube/widget-youtube.component';
 
+import {WidgetHtmlComponent} from './views/widget/widget-edit/widget-html/widget-html.component';
+import {WidgetTextComponent} from './views/widget/widget-edit/widget-text/widget-text.component';
+
+
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
@@ -28,10 +33,12 @@ const appRoutes: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/:wgId', component: WidgetEditComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new/header', component: WidgetHeaderComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new/image', component: WidgetImageComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/new/youtube', component: WidgetYoutubeComponent}
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/youtube', component: WidgetYoutubeComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/html', component: WidgetHtmlComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/text', component: WidgetTextComponent}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

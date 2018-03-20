@@ -13,10 +13,10 @@ export class PageNewComponent implements OnInit {
   @ViewChild('f') pageForm: NgForm;
   pages = [];
   page: Page;
-  uid: String;
+  pid: String;
   name: String;
   title: String;
-  websiteId: String;
+  wid: String;
 
   constructor(private router: Router,
               private pageService: PageService,
@@ -24,18 +24,23 @@ export class PageNewComponent implements OnInit {
   }
 
   createPage() {
-    this.page.name = this.pageForm.value.name;
-    this.page.title = this.pageForm.value.title;
-    this.page.websiteId = this.websiteId;
-    this.pageService.createPage(this.websiteId, this.page);
+    this.pageService.createPage(this.wid, this.page).subscribe(
+      (page: Page) => {
+        this.page = page;
+        this.router.navigate(['../'], {relativeTo: this.route});
+      });
+    // this.page.name = this.pageForm.value.name;
+    // this.page.title = this.pageForm.value.title;
+    // this.page.websiteId = this.websiteId;
+    // this.pageService.createPage(this.websiteId, this.page);
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.pages = this.pageService.findPageByWebsiteId(params['wid']);
-      this.websiteId = params['wid'];
-    });
-    this.page = new Page('', '', '', '');
+        this.wid = params['wid'];
+        this.page = new Page('', '', this.wid, '');
+      }
+    );
   }
 
 }

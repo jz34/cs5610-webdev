@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Widget} from '../../../models/widget.model.client';
 
 @Component({
   selector: 'app-widget-list',
@@ -10,7 +11,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class WidgetListComponent implements OnInit {
   widgets = [];
-  pageId: String;
+  pid: String;
+
   constructor(private domSanitizer: DomSanitizer, private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
 
   getURL(url: String) {
@@ -18,13 +20,21 @@ export class WidgetListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params
-      .subscribe(
-        (params: any) => {
-          this.pageId = params['pid'];
+    this.activatedRoute.params.subscribe(params => {
+      this.pid = params['pid'];
+      return this.widgetService.findWidgetByPage(this.pid).subscribe(
+        (widgets: Widget[]) => {
+          this.widgets = widgets;
         }
       );
-    this.widgets = this.widgetService.findWidgetByPage(this.pageId);
+    });
+  }
+
+  reorderWidgets(indexes) {
+    this.widgetService.reorderWidget(this.pid, indexes.startIndex, indexes.endIndex)
+      .subscribe(
+        (data) => console.log(data)
+      );
   }
 
 }

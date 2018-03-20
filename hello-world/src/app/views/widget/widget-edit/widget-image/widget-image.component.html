@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
   <div class="container-fluid row">
-
     <div class="navbar-text pull-left">
       <a routerLink="../" class="cl-text-black cl-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
       </a>
     </div>
+
     <div class="navbar-text pull-right">
       <button routerLink="../" (click)="f.ngSubmit.emit()" [disabled]="!f.valid" class="btn btn-link cl-icon-padding cl-text-black">
           <span class="glyphicon glyphicon-ok">
@@ -27,7 +27,7 @@
     </div>
     <div class="form-group">
       <label for="image-text">Text</label>
-      <input [(ngModel)]="text"
+      <input [(ngModel)]="widget.text"
              name="text"
              type="text"
              class="form-control"
@@ -36,7 +36,7 @@
     </div>
     <div class="form-group">
       <label for="image-URL">URL</label>
-      <input [(ngModel)]="url"
+      <input [(ngModel)]="widget.url"
              name="url"
              type="text"
              class="form-control"
@@ -46,7 +46,7 @@
     </div>
     <div class="form-group">
       <label for="image-width">Width</label>
-      <input [(ngModel)]="width"
+      <input [(ngModel)]="widget.width"
              name="width"
              type="text"
              class="form-control"
@@ -54,12 +54,18 @@
              placeholder="{{widget.width}}">
     </div>
     <div class="form-group">
-      <label for="exampleInputFile">Upload</label>
-      <input type="file" class="form-control" id="exampleInputFile">
+      <label for="myFile">Upload</label>
+      <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+        <input  name="myFile" id="myFile"  type="file" class="form-control"/>
+        <input  name="widgetId" value="{{wgId}}" style="display: none"/>
+        <input  name="pageId" value="{{pid}}" style="display: none"/>
+        <input  name="websiteId" value="{{wid}}" style="display: none"/>
+        <input  name="userId" value="{{uid}}" style="display: none"/>
+        <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+      </form>
     </div>
   </form>
-  <a class="btn btn-primary btn-block" href="#">Upload Image</a>
-  <button routerLink="../" (click)="delete()" class="btn btn-link btn btn-danger  btn-block">Delete</button>
+  <button (click)="delete()" class="btn btn-link btn btn-danger btn-block">Delete</button>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

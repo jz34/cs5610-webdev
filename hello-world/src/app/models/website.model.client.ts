@@ -1,11 +1,11 @@
 export class Website {
-  uid: String;
+  wid: String;
   name: String;
   developId: String;
   description: String;
 
-  constructor(uid: String, name: String, developerId: String, description: String) {
-    this.uid = uid;
+  constructor(wid: String, name: String, developerId: String, description: String) {
+    this.wid = wid;
     this.name = name;
     this.developId = developerId;
     this.description = description;

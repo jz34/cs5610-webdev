@@ -10,16 +10,21 @@ import {WidgetService} from '../../../services/widget.service.client';
 })
 export class WidgetEditComponent implements OnInit {
 
-  uid: String;  // widgetId
+  wgId: String;
   widget: Widget;
 
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) {
+    this.widget = new Widget('', '', '', '', '', '', '', false);
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.uid = params['wgid'];
+      this.wgId = params['wgId'];
+      return this.widgetService.findWidgetById(this.wgId).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+        });
     });
-    this.widget = this.widgetService.findWidgetById(this.uid);
   }
 
 }

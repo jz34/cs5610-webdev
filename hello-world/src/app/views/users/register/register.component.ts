@@ -11,6 +11,7 @@ import {User} from '../../../models/user.model.client';
 })
 export class RegisterComponent implements OnInit {
   @ViewChild('f') registerForm: NgForm;
+  // user: User; // new field
   username: String;
   password: String;
   verifypw: String;
@@ -28,9 +29,12 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    const user: User = new User('' + this.userService.users.length, this.username, this.password);
-    this.userService.createUser(user);
-    this.router.navigate(['/user', user.uid]);
+    const newUser: User = new User('', this.username, this.password, '', '', '');
+    this.userService.createUser(newUser).subscribe(
+      (user: User) => {
+        this.router.navigate(['/user', user.uid]);
+      }
+    );
   }
 
   login() {

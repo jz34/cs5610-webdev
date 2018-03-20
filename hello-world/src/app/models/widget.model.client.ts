@@ -6,8 +6,10 @@ export class Widget {
   text: String;
   url: String;
   width: String;
+  formatted: boolean;
 
-  constructor(wgId, widgetType, pageId, size= '1', text = 'text', width = '100%', url = 'url') {
+  // constructor(wgId, widgetType, pageId, size= '1', text = 'text', width = '100%', url = 'url') {
+  constructor(wgId, widgetType, pageId, size= '1', text = 'text', width = '100%', url = 'url', formatted = false) {
     this.wgId = wgId;
     this.widgetType = widgetType;
     this.pageId = pageId;
@@ -15,5 +17,6 @@ export class Widget {
     this.text = text;
     this.url = url;
     this.width = width;
+    this.formatted = formatted;
   }
 }

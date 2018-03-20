@@ -14,30 +14,46 @@ export class WebsiteEditComponent implements OnInit {
   @ViewChild('f') websiteForm: NgForm;
   websites = [];
   website: Website;
+  wid: String;
   uid: String;
-  name: String;
-  description: String;
 
   constructor(private router: Router,
               private websiteService: WebsiteService,
               private route: ActivatedRoute) {
+    this.website = new Website('', '', '', '');
   }
 
   updateWebsite() {
-    this.website.name = this.websiteForm.value.name;
-    this.website.description = this.websiteForm.value.description;
-    this.website = this.websiteService.updateWebsite(this.website.uid, this.website);
+    this.websiteService.updateWebsite(this.website).subscribe(
+      (website: Website) => {
+        this.website = website;
+        this.router.navigate(['../'], {relativeTo: this.route});
+      }
+    );
   }
 
   deleteWebsite() {
-    this.websiteService.deleteWebsite(this.website.uid);
+    this.websiteService.deleteWebsite(this.website.wid).subscribe(
+      (data: any) => {
+      this.router.navigate(['../'], {relativeTo: this.route});
+    });
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.website = this.websiteService.findWebsitesById(params['wid']);
-      this.websites = this.websiteService.findWebsitesByUser(params['uid']);
+      this.wid = params['wid'];
+      this.websiteService.findWebsitesById(this.wid).subscribe(
+        (website: Website) => {
+          this.website = website;
+        }
+      );
 
+      this.uid = params['uid'];
+      this.websiteService.findWebsitesByUser(params['uid']).subscribe(
+        (websites: Website[]) => {
+          this.websites = websites;
+        }
+      );
     });
   }
 

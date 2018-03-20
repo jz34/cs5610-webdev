@@ -16,6 +16,9 @@
            ngModel
            required
            #username="ngModel"/>
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+      Username missing!
+    </span>
 
     <!--<label>Password</label>-->
     <input type="password"
@@ -25,9 +28,8 @@
            ngModel
            required
            #password="ngModel"/>
-
-    <span class="help-block" *ngIf="!username.valid && username.touched">
-      Please enter username!
+    <span class="help-block" *ngIf="!password.valid && password.touched">
+      Password missing!
     </span>
 
     <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Login</button>

@@ -11,12 +11,13 @@ import {Website} from '../../../models/website.model.client';
 })
 export class WebsiteNewComponent implements OnInit {
   @ViewChild('f') websiteForm: NgForm;
+  uid: String;
   websites = [];
   website: Website;
-  uid: String;
+  wid: String;
   name: String;
   description: String;
-  userId: String;
+
 
   constructor(private router: Router,
               private websiteService: WebsiteService,
@@ -25,24 +26,24 @@ export class WebsiteNewComponent implements OnInit {
 
 
   createWebsite() {
-    this.website.name = this.websiteForm.value.name;
-    this.website.description = this.websiteForm.value.description;
-    this.website.developId = this.userId;
-    this.websiteService.createWebsite(this.userId, this.website);
-    // this.name = this.website.name;
-    // this.description = this.website.description;
-    // this.website.name = this.websiteForm.value.name;
-    // this.website.description = this.websiteForm.value.description;
-    // this.website = this.websiteService.updateWebsite(this.website.wgId, this.website);
+    this.websiteService.createWebsite(this.uid, this.website).subscribe(
+      (website: Website) => {
+        this.website = website;
+        this.router.navigate(['../'], {relativeTo: this.route});
+      }
+    );
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.website = this.websiteService.findWebsitesById(params['wid']);
-      this.websites = this.websiteService.findWebsitesByUser(params['uid']);
-      this.userId = params['uid'];
+      this.uid = params['uid'];
+      this.website = new Website('', '', this.uid, '');
+      return this.websiteService.findWebsitesByUser(this.uid).subscribe(
+        (websites: Website[]) => {
+          this.websites = websites;
+        }
+      );
     });
-    this.website = new Website('', '', '', '');
   }
 
 }

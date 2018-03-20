@@ -12,31 +12,47 @@ import {Page} from '../../../models/page.model.client';
 })
 export class PageEditComponent implements OnInit {
   @ViewChild('f') pageForm: NgForm;
-  pages = [];
+  pid; String;
+  // uid: String;
+  // wid: String;
   page: Page;
-  uid: String;
+  pages = [];
   name: String;
   title: String;
 
   constructor(private router: Router,
               private pageService: PageService,
               private route: ActivatedRoute) {
+    this.page = new Page('', '', '', '');
   }
 
   updatePage() {
-    this.page.name = this.pageForm.value.name;
-    this.page.title = this.pageForm.value.title;
-    this.pageService.updatePage(this.page.uid, this.page);
+    this.pageService.updatePage(this.page).subscribe(
+      (page: Page) => {
+        this.page = page;
+        this.router.navigate(['../'], {relativeTo: this.route});
+      }
+    );
   }
 
   deletePage() {
-    this.pageService.deletePage(this.page.uid);
+    this.pageService.deletePage(this.page.pid).subscribe(
+      (page: Page) => {
+        this.router.navigate(['../'], {relativeTo: this.route});
+      }
+    );
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.page = this.pageService.findPageById(params['pid']);
-      this.pages = this.pageService.findPageByWebsiteId(params['wid']);
+      this.pid = params['pid'];
+      // this.uid = params['uid'];
+      // this.wid = params['wid'];
+      return this.pageService.findPageById(this.pid).subscribe(
+        (page: Page) => {
+          this.page = page;
+        }
+      );
     });
   }
 }

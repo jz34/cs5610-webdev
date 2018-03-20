@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('f') LoginForm: NgForm;
   user: User;
   uid: String;
+
   username: String;
   email: String;
   firstName: String;
@@ -23,16 +24,27 @@ export class ProfileComponent implements OnInit {
   constructor(private router: Router,
               private userService: UserService,
               private route: ActivatedRoute) {
+    this.user = new User('', '', '', '', '', '');
   }
 
+
   updateUser() {
-    this.user.uid = this.uid;
-    this.user.username = this.LoginForm.value.username;
-    this.user.email = this.LoginForm.value.email;
-    this.user.firstName = this.LoginForm.value.firstName;
-    this.user.lastName = this.LoginForm.value.lastName;
-    this.user = this.userService.updateUser(this.user);
-    this.router.navigate(['/user', this.user.uid]);
+    this.userService.updateUser(this.user).subscribe(
+      (user: User) => {
+        this.user = user;
+      }
+    );
+  }
+
+
+  deleteUser() {
+    this.route.params.subscribe(params => {
+      return this.userService.deleteUser(this.uid).subscribe(
+        (data: any) => {
+          this.router.navigate(['/login']);
+        }
+      );
+    });
   }
 
   logout() {
@@ -41,13 +53,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.user = this.userService.findUserById(params['uid']);
+      this.uid = params['uid'];
+      return this.userService.findUserById(this.uid).subscribe(
+        (user: User) => {
+          this.user = user;
+        }
+      );
     });
-    this.username = this.user.username;
-    this.email = this.user.email;
-    this.firstName = this.user.firstName;
-    this.lastName = this.user.lastName;
   }
-
-
 }

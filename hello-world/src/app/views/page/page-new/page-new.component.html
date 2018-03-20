@@ -23,7 +23,7 @@
   <form (ngSubmit)="createPage()" #f="ngForm">
     <div class="form-group">
       <label for="page-name">Name</label>
-      <input [(ngModel)]="name"
+      <input [(ngModel)]="page.name"
              name="name"
              type="text"
              class="form-control"
@@ -32,7 +32,7 @@
     </div>
     <div class="form-group">
       <label for="page-title">Title</label>
-      <input [(ngModel)]="title"
+      <input [(ngModel)]="page.title"
              name="title"
              type="text"
              class="form-control"
@@ -44,10 +44,10 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
-    <div class="pull-right navbar-text">
-      <a href="../../../.." class="cl-icon-padding">
-        <span class="glyphicon glyphicon-user"></span>
-      </a>
-    </div>
+    <!--<div class="pull-right navbar-text">-->
+      <!--<a href="../../../.." class="cl-icon-padding">-->
+        <!--<span class="glyphicon glyphicon-user"></span>-->
+      <!--</a>-->
+    <!--</div>-->
   </div>
 </nav>

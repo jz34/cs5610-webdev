@@ -19,12 +19,18 @@ import {WidgetListComponent} from './views/widget/widget-list/widget-list.compon
 import {WidgetHeaderComponent} from './views/widget/widget-edit/widget-header/widget-header.component';
 import {WidgetImageComponent} from './views/widget/widget-edit/widget-image/widget-image.component';
 import {WidgetYoutubeComponent} from './views/widget/widget-edit/widget-youtube/widget-youtube.component';
+import {HttpModule} from '@angular/http';
 
 import {UserService} from './services/user.service.client';
 import {WebsiteService} from './services/website.service.client';
 import {PageService} from './services/page.service.client';
 import {WidgetService} from './services/widget.service.client';
 import {APP_BASE_HREF} from '@angular/common';
+
+import { QuillEditorModule } from 'ngx-quill-editor';
+import {SortableDirective} from '../../assignment/directives/sortable.directive';
+import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
 
 
 @NgModule({
@@ -44,12 +50,17 @@ import {APP_BASE_HREF} from '@angular/common';
     WidgetListComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    SortableDirective,
+    WidgetHtmlComponent,
+    WidgetTextComponent,
   ],
   imports: [
     BrowserModule,
     routing,
-    FormsModule
+    FormsModule,
+    HttpModule,
+    QuillEditorModule
   ],
   providers: [UserService, WebsiteService, PageService, WidgetService, {provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]

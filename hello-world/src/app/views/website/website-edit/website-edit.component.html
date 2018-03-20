@@ -32,20 +32,22 @@
 
 <div class="contain-fluid">
   <div class="col-xs-4 hidden-xs">
-    <ul class="list-group cl-list-group-borderless">
+    <ul class="list-group cl-list-group-borderless" >
       <div *ngFor="let website of websites">
         <li class="list-group-item cl-list-item-borderless">
-          <a routerLink="../{{website.uid}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-          <a routerLink="../{{website.uid}}/page">{{website.name}}</a>
+          <a routerLink="../{{website.wid}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+          <a routerLink="../{{website.wid}}/page">{{website.name}}</a>
         </li>
       </div>
     </ul>
   </div>
+
+
   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 borders cl-group-padding">
     <form (ngSubmit)="updateWebsite()" #f="ngForm">
       <div class="form-group">
         <label for="website-name">Website Name</label>
-        <input [(ngModel)]="name"
+        <input [(ngModel)]="website.name"
                name="name"
                type="text"
                class="form-control"
@@ -54,7 +56,7 @@
       </div>
       <div class="form-group">
         <label for="website-description">Website Description</label>
-        <textarea [(ngModel)]="description"
+        <textarea [(ngModel)]="website.description"
                   id="website-description"
                   class="form-control"
                   rows="5"
