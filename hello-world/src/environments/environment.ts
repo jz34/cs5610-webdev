@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:4200'
-  // baseUrl: 'https://cs5610-webdev-jiawei-zhang.herokuapp.com';
+  // baseUrl: 'http://localhost:4200'
+  baseUrl: 'https://cs5610-webdev-jiawei-zhang.herokuapp.com'
 };
 
 
