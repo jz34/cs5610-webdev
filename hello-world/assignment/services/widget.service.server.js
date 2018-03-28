@@ -79,7 +79,7 @@ module.exports = function(app) {
       });
     }
 
-    res.redirect("https://web-app-maker-angular-4.herokuapp.com/user/" + userId + "/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+    res.redirect("https://web-app-maker-angular-4.herokuapp.com/user/" + userId + "/website/"+ websiteId+ "/page/"+pageId+"/widget/"+widgetId);
     // res.redirect("http://localhost:4200/user/" + userId + "/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
   }
 

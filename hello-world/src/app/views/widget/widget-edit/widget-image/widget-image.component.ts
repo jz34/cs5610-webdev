@@ -31,15 +31,15 @@ export class WidgetImageComponent implements OnInit {
       this.widgetService.createWidget(this.pid, this.widget).subscribe(
         (widget: Widget) => {
           this.widget = widget;
-          this.router.navigate(['/user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
-          // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+          // this.router.navigate(['/user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+          this.router.navigate(['https://web-app-maker-angular-4.herokuapp.com/user/', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
         }
       );
     } else {
       this.widgetService.updateWidget(this.widget).subscribe(
         () => {
-          this.router.navigate(['/user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
-          // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+          // this.router.navigate(['/user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+          this.router.navigate(['https://web-app-maker-angular-4.herokuapp.com/user/', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
         }
       );
     }
