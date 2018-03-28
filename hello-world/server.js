@@ -1,4 +1,13 @@
 var express = require('express');
+
+/* Mongodb    */
+
+var connectionString = 'mongodb://admin:admin@ds263837.mlab.com:63837/heroku_js3l1v9k';
+// var connectionString = 'mongodb://localhost:27017/webdev';
+var mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
+
 const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
@@ -42,6 +51,6 @@ server.listen( port , function() {
 
 
 
-// for ass5
+// // for ass5
 // var mongoose = require('mongoose');
 // var dbmongo = mongoose.connect('mongodb://localhost:27017/webdev');

@@ -1,3 +1,131 @@
+// var passport = require('passport');
+// var LocalStrategy = require('passport-local').Strategy;
+// var FacebookStrategy = require('passport-facebook').Strategy;
+// var bcrypt = require("bcrypt-nodejs");
+
+module.exports = function (app, models) {
+  var userModel = require("../model/user/user.model.server");
+
+  app.post("/api/user", createUser);
+  app.get("/api/user", findUser);
+  app.get("/api/user/:userId", findUserById);
+  app.put("/api/user/:userId", updateUser);
+  app.delete("/api/user/:userId", deleteUser);
+
+  function findUserByCredentials (username, password, req, res){
+    userModel
+      .findUserByCredentials(username, password)
+      .then(
+        function(user) {
+          console.log(user);
+          if (user) {
+            res.json(user);
+          }
+          else {
+            res.send('0');
+          }
+        },
+        function(err) {
+          res.sendStatus(400).send(err);
+        }
+      );
+  }
+
+  function createUser(req, res) {
+    var user = req.body;
+    userModel
+      .createUser(user)
+      .then(
+        function (user) {
+          console.log(user._id);
+          res.json(user);
+        },
+        function (error) {
+          res.statusCode(400).send(error);
+        }
+      )
+  }
+
+  function deleteUser(req, res) {
+    var userId = req.params.userId;
+
+    userModel
+      .deleteUser(userId)
+      //responds with some stats
+      .then(function (stats) {
+
+          res.send(200);
+        },
+        function (error) {
+          res.statusCode(404).send(error);
+        });
+  }
+
+  function updateUser(req, res) {
+    var userId = req.params.userId;
+    var user = req.body;
+
+    console.log('server side', userId, user);
+
+    userModel.updateUser(userId, user)
+      .then(function(status){
+        res.send(status);
+      });
+
+    // userModel
+    //   .updateUser(userId, user)
+    //   .then(function (stats) {
+    //
+    //       res.send(200);
+    //     },
+    //     function (error) {
+    //       res.statusCode(404).send(error);
+    //     });
+  }
+
+  function findUserById(req, res) {
+    var id = req.params.userId;
+
+    userModel
+      .findUserById(id)
+      .then(function (user) {
+          res.send(user);
+        },
+        function (error) {
+          res.statusCode(404).send(error);
+        });
+  }
+
+  function findUser(req, res) {
+    var username = req.query['username'];
+    var password = req.query['password'];
+
+    if (username && password) {
+      findUserByCredentials(username, password, req, res);
+    } else if (username) {
+      findUserByUsername(username, res);
+    } else {
+      res.send(users);
+    }
+  }
+
+  function findUserByUsername(username, res) {
+    userModel
+      .findUserByUsername(username)
+      .then(function (user) {
+          res.json(user);
+        },
+        function (err) {
+          res.statusCode(404).send(err);
+        });
+  }
+};
+
+
+
+
+// archive
+/*
 module.exports = function (app) {
   app.post("/api/user", createUser);
   app.get("/api/user", findUser);
@@ -75,3 +203,4 @@ module.exports = function (app) {
     res.status(404).send("user not found!");
   }
  };
+*/

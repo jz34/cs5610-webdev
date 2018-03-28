@@ -40,7 +40,7 @@ export class PageService {
 
 
   updatePage(page: Page) {
-    return this.http.put(this.baseUrl + '/api/page/' + page.pid, page).map(
+    return this.http.put(this.baseUrl + '/api/page/' + page._id, page).map(
       (res: Response) => {
         return res.json();
       }

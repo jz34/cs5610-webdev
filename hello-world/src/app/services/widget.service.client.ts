@@ -42,7 +42,7 @@ export class WidgetService {
 
 
   updateWidget(widget: Widget) {
-    return this.http.put(this.baseUrl + '/api/widget/' + widget.wgId, widget).map(
+    return this.http.put(this.baseUrl + '/api/widget/' + widget._id, widget).map(
       (res: Response) => {
         return res.json();
       }
@@ -59,9 +59,10 @@ export class WidgetService {
   }
 
   reorderWidget(pageId: String, initial: String, final: String) {
-    const url = this.baseUrl + '/api/page/' + pageId + '/widget?initial=' + initial + '&final=' + final;
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget?start=' + initial + '&end=' + final;
     return this.http.put(url, '').map((res: Response) => {
-      return res.json();
+      const data = res;
+      return data;
     });
   }
 }

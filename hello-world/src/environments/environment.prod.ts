@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   baseUrl: 'https://cs5610-webdev-jiawei-zhang.herokuapp.com'
+  // baseUrl: 'http://localhost:4200'
 };
 
 

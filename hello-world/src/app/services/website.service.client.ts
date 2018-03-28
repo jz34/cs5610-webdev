@@ -42,7 +42,7 @@ export class WebsiteService {
 
 
   updateWebsite(website: Website) {
-    return this.http.put(this.baseUrl + '/api/website/' + website.wid, website).map(
+    return this.http.put(this.baseUrl + '/api/website/' + website._id, website).map(
       (res: Response) => {
         return res.json();
       }

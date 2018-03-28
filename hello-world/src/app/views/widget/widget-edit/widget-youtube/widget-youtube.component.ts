@@ -44,7 +44,7 @@ export class WidgetYoutubeComponent implements OnInit {
   }
 
   delete() {
-    this.widgetService.deleteWidget(this.widget.wgId).subscribe(
+    this.widgetService.deleteWidget(this.widget._id).subscribe(
       () => {
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }

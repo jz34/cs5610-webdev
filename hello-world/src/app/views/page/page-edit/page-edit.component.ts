@@ -36,7 +36,7 @@ export class PageEditComponent implements OnInit {
   }
 
   deletePage() {
-    this.pageService.deletePage(this.page.pid).subscribe(
+    this.pageService.deletePage(this.page._id).subscribe(
       (page: Page) => {
         this.router.navigate(['../'], {relativeTo: this.route});
       }

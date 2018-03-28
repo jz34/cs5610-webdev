@@ -63,8 +63,15 @@
         <input  name="userId" value="{{uid}}" style="display: none"/>
         <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
       </form>
+
+      <br>
+      <a class="btn btn-primary btn-block "
+
+         [routerLink]="['/user/'+ uid + '/website/'+ wid +'/page/'+ pid +'/widget/'+ wgId +'/flickr']" >Choose From Flickr</a>
+
     </div>
   </form>
+
   <button (click)="delete()" class="btn btn-link btn btn-danger btn-block">Delete</button>
 </div>
 

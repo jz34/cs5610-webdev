@@ -1,32 +1,119 @@
-module.exports = function(app){
+module.exports = function(app) {
+  var websiteModel = require("../model/website/website.model.server");
+
   app.post("/api/user/:userId/website", createWebsite);
   app.get("/api/user/:userId/website", findAllWebsiteForUser);
   app.get("/api/website/:websiteId", findWebsiteById);
   app.put("/api/website/:websiteId", updateWebsite);
   app.delete("/api/website/:websiteId", deleteWebsite);
 
-  var WEBSITES = [
-    {wid: "123", name: "Facebook", developerId: "456", description: "Lorem"},
-    {wid: "234", name: "Tweeter", developerId: "456", description: "Lorem"},
-    {wid: "456", name: "Gizmodo", developerId: "456", description: "Lorem"},
-    {wid: "890", name: "Go", developerId: "123", description: "Lorem"},
-    {wid: "567", name: "Tic Tac Toe", developerId: "123", description: "Lorem"},
-    {wid: "678", name: "Checkers", developerId: "123", description: "Lorem"},
-    {wid: "789", name: "Chess", developerId: "234", description: "Lorem"}
-  ];
+  function createWebsite(req,res) {
+    var userId = req.params.userId;
+    var website = req.body;
 
-  //ok
+    console.log("request received to create a website ", userId, website);
+
+    websiteModel
+      .createWebsiteForUser(userId, website)
+      .then (function (website) {
+          res.json(website);
+        },
+        function (err) {
+          res.sendStatus(400).send(err);
+        });
+  }
+
+
+  function findAllWebsiteForUser(req,res) {
+    var userId = req.params.userId;
+    console.log(userId);
+
+    websiteModel
+      .findAllWebsitesForUser(userId)
+      .then(function (websites) {
+          res.json(websites);
+        },
+        function (err) {
+          res.sendStatus(404).send(err);
+        });
+  }
+
+  function findWebsiteById(req, res) {
+    var websiteId = req.params.websiteId;
+
+    websiteModel
+      .findWebsiteById(websiteId)
+      .then(function (website) {
+          res.json(website);
+        },
+        function (err) {
+          res.sendStatus(404).send(err);
+        });
+  }
+
+  function updateWebsite(req,res) {
+    var websiteId = req.params.websiteId;
+    var website  = req.body;
+
+    websiteModel.updateWebsite(websiteId, website)
+      .then(function(status){
+        res.send(status);
+    });
+
+    // websiteModel
+    //   .updateWebsite(websiteId, website)
+    //   .then (function (stats) {
+    //       console.log(stats);
+    //       res.send(200);
+    //     },
+    //     function (err) {
+    //       res.sendStatus(404).send(err);
+    //     });
+  }
+
+  function deleteWebsite(req,res) {
+    var websiteId = req.params.websiteId;
+
+    websiteModel.deleteWebsite(websiteId)
+      .then(function(status){
+        res.send(status);
+      });
+
+    // websiteModel
+    //   .deleteWebsite(websiteId)
+    //   .then (function (stats) {
+    //       console.log(stats);
+    //       res.send(200);
+    //     },
+    //     function (err) {
+    //       res.sendStatus(404).send(err);
+    //     });
+  }
+};
+
+
+/*
+  // var WEBSITES = [
+  //   {wid: "123", name: "Facebook", developerId: "456", description: "Lorem"},
+  //   {wid: "234", name: "Tweeter", developerId: "456", description: "Lorem"},
+  //   {wid: "456", name: "Gizmodo", developerId: "456", description: "Lorem"},
+  //   {wid: "890", name: "Go", developerId: "123", description: "Lorem"},
+  //   {wid: "567", name: "Tic Tac Toe", developerId: "123", description: "Lorem"},
+  //   {wid: "678", name: "Checkers", developerId: "123", description: "Lorem"},
+  //   {wid: "789", name: "Chess", developerId: "234", description: "Lorem"}
+  // ];
+
   function createWebsite(req, res){
     var userId = req.params['userId'];
     var website = req.body;
-    website.wid = (new Date()).getTime() + "";
+    website._id = (new Date()).getTime() + "";
     website.developerId = userId; //多余？
     WEBSITES.push(website);
     var websites = getWebsitesForUserId(userId);
     res.json(websites);
   }
 
-  //ok
+
   function findAllWebsiteForUser(req, res) {
     var userId = req.params['userId'];
     var websites= getWebsitesForUserId(userId);
@@ -90,3 +177,5 @@ module.exports = function(app){
     res.status(404).send("website not found!");
   }
 };
+
+*/

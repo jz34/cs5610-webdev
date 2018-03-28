@@ -19,16 +19,17 @@
   </div>
 </nav>
 
-
+<!--改一改-->
 <div class="container container-padding" appSortable (newIndexes)="reorderWidgets($event)">
-<div *ngFor="let widget of widgets" class="container cl-container-padding">
+<!--<div class="container container-padding">-->
+<div *ngFor="let widget of widgets | orderBy" class="container cl-container-padding">
   <div [ngSwitch]="widget.widgetType">
 
     <div *ngSwitchCase="'HEADER'">
       <a class="pull-right">
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </a>
-      <a routerLink="./{{widget.wgId}}" class="pull-right">
+      <a routerLink="./{{widget._id}}" class="pull-right">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
 
@@ -47,7 +48,7 @@
         <a class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger"></span>
         </a>
-        <a routerLink="./{{widget.wgId}}" class="pull-right">
+        <a routerLink="./{{widget._id}}" class="pull-right">
           <span class="glyphicon glyphicon-cog"></span>
         </a>
         <img class="img-responsive img-rounded cl-widget-images"
@@ -56,13 +57,13 @@
     </div>
 
 
-    <div *ngSwitchCase="'YOUTUBE'">
+    <div *ngSwitchCase="'YOUTUBE'" class="youtube-widget">
       <div class="embed-responsive embed-responsive-16by9">
         <iframe width="640" height="360" [src]=getURL(widget.url) frameborder="0" allowfullscreen></iframe>
         <a class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger" style="background-color: white"></span>
         </a>
-        <a routerLink="./{{widget.wgId}}" class="pull-right">
+        <a routerLink="./{{widget._id}}" class="pull-right">
           <span class="glyphicon glyphicon-cog" style="background-color: white"></span>
         </a>
       </div>
@@ -73,7 +74,7 @@
       <a class="pull-right">
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </a>
-      <a routerLink="./{{widget.wgId}}" class="pull-right">
+      <a routerLink="./{{widget._id}}" class="pull-right">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
       {{widget.text}}
@@ -83,7 +84,7 @@
       <a class="pull-right">
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </a>
-      <a routerLink="./{{widget.wgId}}" class="pull-right">
+      <a routerLink="./{{widget._id}}" class="pull-right">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
       <div [innerHTML]="widget.text"></div>

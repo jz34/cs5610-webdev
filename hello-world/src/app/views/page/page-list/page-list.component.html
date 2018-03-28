@@ -24,8 +24,8 @@
   <ul class="list-group cl-list-group-borderless">
     <div *ngFor="let page of pages">
       <li class="list-group-item cl-list-item-borderless">
-        <a routerLink="./{{page.pid}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-        <a routerLink="./{{page.pid}}/widget">{{page.name}}</a>
+        <a routerLink="./{{page._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+        <a routerLink="./{{page._id}}/widget">{{page.name}}</a>
       </li>
     </div>
   </ul>

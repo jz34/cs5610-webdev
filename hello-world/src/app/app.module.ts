@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+
 import {routing} from './app.routing';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './views/users/login/login.component';
@@ -19,6 +20,7 @@ import {WidgetListComponent} from './views/widget/widget-list/widget-list.compon
 import {WidgetHeaderComponent} from './views/widget/widget-edit/widget-header/widget-header.component';
 import {WidgetImageComponent} from './views/widget/widget-edit/widget-image/widget-image.component';
 import {WidgetYoutubeComponent} from './views/widget/widget-edit/widget-youtube/widget-youtube.component';
+import {FlickrImageSearchComponent} from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {HttpModule} from '@angular/http';
 
 import {UserService} from './services/user.service.client';
@@ -31,6 +33,11 @@ import { QuillEditorModule } from 'ngx-quill-editor';
 import {SortableDirective} from '../../assignment/directives/sortable.directive';
 import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
+
+
+import {FlickrService} from './services/flickr.service.client';
+
+import {OrderByPipe} from './views/widget/widget-list/order-by-pipe.pipe';
 
 
 @NgModule({
@@ -54,6 +61,8 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
     SortableDirective,
     WidgetHtmlComponent,
     WidgetTextComponent,
+    FlickrImageSearchComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
@@ -62,7 +71,7 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
     HttpModule,
     QuillEditorModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, {provide: APP_BASE_HREF, useValue: '/'}],
+  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, {provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

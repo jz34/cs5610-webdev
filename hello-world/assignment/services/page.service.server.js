@@ -1,10 +1,93 @@
 module.exports = function (app) {
+  var pageModel = require("../model/page/page.model.server");
+
   app.post("/api/website/:websiteId/page", createPage);
   app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
   app.get("/api/page/:pageId", findPageById);
   app.put("/api/page/:pageId", updatePage);
   app.delete("/api/page/:pageId", deletePage);
 
+  function createPage(req, res) {
+    var websiteId = req.params.websiteId;
+    var page = req.body;
+
+    pageModel
+      .createPage(websiteId, page)
+      .then(function (page) {
+        res.json(page);
+      }, function (err) {
+        res.sendStatus(400).send(err);
+      });
+  }
+
+  function findAllPagesForWebsite(req,res) {
+    var websiteId = req.params.websiteId;
+
+    pageModel
+      .findAllPagesForWebsite(websiteId)
+      .then(function (pages) {
+          res.json(pages);
+        },
+        function (err) {
+          res.sendStatus(404).send(err);
+        });
+  }
+
+  function updatePage(req,res) {
+    var pageId = req.params.pageId;
+    var page = req.body;
+
+    pageModel.updatePage(pageId, page)
+      .then(function(status){
+        res.send(status);
+      });
+
+    // pageModel
+    //   .updatePage(pageId, page)
+    //   .then(function (stats) {
+    //       console.log(stats);
+    //       res.send(200);
+    //     },
+    //     function (err) {
+    //       res.sendStatus(404).send(err);
+    //     });
+  }
+
+  function findPageById(req,res ) {
+    var pageId = req.params.pageId;
+    pageModel
+      .findPageById(pageId)
+      .then(function (page) {
+          res.json(page);
+        },
+        function (err) {
+          res.sendStatus(404).send(err);
+        });
+  }
+
+  function deletePage(req,res) {
+    var pageId = req.params.pageId;
+
+    pageModel.deletePage(pageId)
+      .then(function(status){
+        res.send(status);
+      });
+
+    // pageModel
+    //   .deletePage(pageId)
+    //   .then (function (stats) {
+    //       console.log(stats);
+    //       res.send(200);
+    //     },
+    //     function (err) {
+    //       res.sendStatus(404).send(err);
+    //     });
+  }
+};
+
+
+
+/*
   var PAGES = [
     {pid: "321", name: "Post 1", websiteId: "456", title: "Lorem"},
     {pid: "432", name: "Post 2", websiteId: "456", title: "Lorem"},
@@ -15,7 +98,7 @@ module.exports = function (app) {
   function createPage(req, res) {
     var websiteId = req.param['websiteId'];
     var page = req.body;
-    page.pid = (new Date()).getTime() + "";
+    page._id = (new Date()).getTime() + "";
     page.websiteId = websiteId; //多余？
     PAGES.push(page);
     var pages = getPagesForWebsiteId(websiteId);
@@ -84,3 +167,5 @@ module.exports = function (app) {
     res.status(404).send("page not found!");
   }
 };
+
+*/

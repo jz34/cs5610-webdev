@@ -20,8 +20,8 @@
     <ul class="list-group cl-list-group-borderless">
       <div *ngFor="let website of websites">
         <li class="list-group-item cl-list-item-borderless">
-          <a routerLink="./{{website.wid}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-          <a routerLink="./{{website.wid}}/page">{{website.name}}</a>
+          <a routerLink="./{{website._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+          <a routerLink="./{{website._id}}/page">{{website.name}}</a>
         </li>
       </div>
     </ul>
