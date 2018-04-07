@@ -9,9 +9,6 @@ module.exports = function (app, models) {
     clientID     : process.env.clientID,
     clientSecret : process.env.clientSecret,
     callbackURL  : process.env.callbackURL
-    // clientID : "1985736928120660",
-    // clientSecret : "08fa195be685e8fcdd78cca85db367f6",
-    // callbackURL : "https://cs5610-webdev-jiawei-zhang.herokuapp.com/auth/facebook/callback"
   };
 
   app.post("/api/user", createUser);
