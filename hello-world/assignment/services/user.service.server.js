@@ -7,9 +7,9 @@ module.exports = function (app, models) {
   var userModel = require("../model/user/user.model.server");
 
   var facebookConfig = {
-    clientID     : process.env.clientID,
-    clientSecret : process.env.clientSecret,
-    callbackURL  : process.env.callbackURL
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
   };
 
   app.post("/api/user", createUser);
