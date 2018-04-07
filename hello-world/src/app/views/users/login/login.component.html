@@ -1,9 +1,19 @@
 <div class="container-fluid">
 
   <div *ngIf="errorFlag"
-             class="alert alert-danger">
+       class="alert alert-danger">
   {{errorMsg}}
 </div>
+
+  <div *ngIf="noUsername"
+       class="alert alert-danger">
+    {{noUsernameMsg}}
+  </div>
+
+  <div *ngIf="noPassword"
+       class="alert alert-danger">
+    {{noPasswordMsg}}
+  </div>
 
   <h1>Login</h1>
 
@@ -16,9 +26,7 @@
            ngModel
            required
            #username="ngModel"/>
-    <span class="help-block" *ngIf="!username.valid && username.touched">
-      Username missing!
-    </span>
+    <!--<span class="help-block" *ngIf="!username.valid && username.touched">Username missing!</span>-->
 
     <!--<label>Password</label>-->
     <input type="password"
@@ -28,11 +36,14 @@
            ngModel
            required
            #password="ngModel"/>
-    <span class="help-block" *ngIf="!password.valid && password.touched">
-      Password missing!
-    </span>
+    <!--<span class="help-block" *ngIf="!password.valid && password.touched">Password missing!</span>-->
 
-    <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Login</button>
+    <!--<button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Login</button>-->
+    <button class="btn btn-primary btn-block" type="submit">Login</button>
     <button class="btn btn-success btn-block" type="button" (click)="register()">Register</button>
+    <!--<button class="btn btn-info btn-block" type="button" >Facebook</button>-->
+    <a href="/facebook/login" class="btn btn-info btn-block"> <span class="fa fa-facebook"></span>
+      Facebook
+    </a>
   </form>
 </div>

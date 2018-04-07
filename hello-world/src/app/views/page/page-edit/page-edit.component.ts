@@ -12,13 +12,16 @@ import {Page} from '../../../models/page.model.client';
 })
 export class PageEditComponent implements OnInit {
   @ViewChild('f') pageForm: NgForm;
-  pid; String;
+  pid: String;
   // uid: String;
-  // wid: String;
+  wid: String;
   page: Page;
   pages = [];
   name: String;
   title: String;
+
+  noName = false;
+  noNameMsg = 'Page name is required!';
 
   constructor(private router: Router,
               private pageService: PageService,
@@ -27,10 +30,19 @@ export class PageEditComponent implements OnInit {
   }
 
   updatePage() {
+    this.name = this.pageForm.value.name;
+
+    if (this.name === '') {
+      this.noName = true;
+      return;
+    } else {
+      this.noName = false;
+    }
+
     this.pageService.updatePage(this.page).subscribe(
       (page: Page) => {
         this.page = page;
-        this.router.navigate(['../'], {relativeTo: this.route});
+        this.router.navigate(['/user', 'website', this.wid, 'page'], {relativeTo: this.route});
       }
     );
   }
@@ -38,7 +50,7 @@ export class PageEditComponent implements OnInit {
   deletePage() {
     this.pageService.deletePage(this.page._id).subscribe(
       (page: Page) => {
-        this.router.navigate(['../'], {relativeTo: this.route});
+        this.router.navigate(['/user', 'website', this.wid, 'page'], {relativeTo: this.route});
       }
     );
   }
@@ -47,7 +59,7 @@ export class PageEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.pid = params['pid'];
       // this.uid = params['uid'];
-      // this.wid = params['wid'];
+      this.wid = params['wid'];
       return this.pageService.findPageById(this.pid).subscribe(
         (page: Page) => {
           this.page = page;

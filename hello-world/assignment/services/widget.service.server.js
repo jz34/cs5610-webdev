@@ -20,7 +20,7 @@ module.exports = function(app) {
 
 
   function uploadImage(req, res) {
-    var userId = req.body.userId;
+    // var userId = req.body.userId;
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
@@ -29,8 +29,8 @@ module.exports = function(app) {
     var myFile        = req.file;
 
     if(myFile == null) {
-      res.redirect("https://web-app-maker-angular-4.herokuapp.com/user/" + userId + "/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
-      // res.redirect("http://localhost:4200/user/" + userId + "/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+      res.redirect("https://web-app-maker-angular-4.herokuapp.com/user/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+      // res.redirect("http://localhost:4200/user/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
       return;
     }
 
@@ -79,8 +79,8 @@ module.exports = function(app) {
       });
     }
 
-    res.redirect("https://web-app-maker-angular-4.herokuapp.com/user/" + userId + "/website/"+ websiteId+ "/page/"+pageId+"/widget/"+widgetId);
-    // res.redirect("http://localhost:4200/user/" + userId + "/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+    res.redirect("https://web-app-maker-angular-4.herokuapp.com/user/website/"+ websiteId+ "/page/"+pageId+"/widget/"+widgetId);
+    // res.redirect("http://localhost:4200/user/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
   }
 
 

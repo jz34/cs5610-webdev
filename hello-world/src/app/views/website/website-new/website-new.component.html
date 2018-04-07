@@ -1,4 +1,9 @@
 <nav class="navbar cl-blue-navbar">
+  <div *ngIf="noName"
+       class="alert alert-danger">
+    {{noNameMsg}}
+  </div>
+
   <div class="row">
     <div class="col-xs-4 hidden-xs">
       <div class="container-fluid">
@@ -20,7 +25,7 @@
         <a class="cl-text-white navbar-brand cl-text-bold" href="#">
           New Websites
         </a>
-        <button routerLink="../" class="btn btn-link navbar-link navbar-text pull-right cl-text-white cl-icon-padding"
+        <button class="btn btn-link navbar-link navbar-text pull-right cl-text-white cl-icon-padding"
                 (click)="f.ngSubmit.emit()">
           <span class="glyphicon glyphicon-ok"></span>
         </button>
@@ -66,7 +71,7 @@
 
 <nav class="navbar navbar-fixed-bottom cl-blue-navbar">
   <div class="container-fuild">
-    <a routerLink="../.." class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+    <a routerLink="/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
       <span class="glyphicon glyphicon-user"></span>
     </a>
   </div>

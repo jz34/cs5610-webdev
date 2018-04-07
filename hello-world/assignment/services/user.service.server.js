@@ -1,16 +1,154 @@
-// var passport = require('passport');
-// var LocalStrategy = require('passport-local').Strategy;
-// var FacebookStrategy = require('passport-facebook').Strategy;
-// var bcrypt = require("bcrypt-nodejs");
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function (app, models) {
   var userModel = require("../model/user/user.model.server");
+  var facebookConfig = {
+    clientID : "1985736928120660",
+    clientSecret : "08fa195be685e8fcdd78cca85db367f6",
+    callbackURL : "https://cs5610-webdev-jiawei-zhang.herokuapp.com/auth/facebook/callback"
+  };
 
   app.post("/api/user", createUser);
   app.get("/api/user", findUser);
   app.get("/api/user/:userId", findUserById);
   app.put("/api/user/:userId", updateUser);
   app.delete("/api/user/:userId", deleteUser);
+
+  // authentication api
+  app.post('/api/login', passport.authenticate('local'), login);
+  app.post('/api/logout', logout);
+  app.post('/api/register', register);
+  app.post('/api/loggedIn', loggedIn);
+
+  // auth with Facebook
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+      successRedirect: '/#/profile',
+      failureRedirect: '/#/login'
+  }));
+
+  app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
+
+  // passport config
+  passport.use(new LocalStrategy(localStrategy));
+  passport.serializeUser(serializeUser);
+  passport.deserializeUser(deserializeUser);
+
+  // Facebook
+  passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+  function serializeUser(user, done) {
+    done(null, user);
+  }
+
+  function deserializeUser(user, done) {
+    userModel
+      .findUserById(user._id)
+      .then(
+        function(user){
+          done(null, user);
+        },
+        function(err){
+          done(err, null);
+        }
+      );
+  }
+
+  function localStrategy(username, password, done) {
+    userModel
+      .findUserByUsername(username)
+      // .findUserByCredentials(username, password)
+      .then(
+        function (user) {
+          if (user && bcrypt.compareSync(password, user.password)) {
+          // if(user.username === username && user.password === password) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        },
+        function (err) {
+          res.sendStatus(400).send(err);
+        });
+  }
+
+  function facebookStrategy(token, refreshToken, profile, done) {
+    userModel
+      .findUserByFacebookId(profile.id)
+      .then(
+        function(user) {
+          if(user) {
+            return done(null, user);
+          } else {
+            var names = profile.displayName.split(" ");
+            var newFacebookUser = {
+              lastName:  names[1],
+              firstName: names[0],
+              email:     profile.emails ? profile.emails[0].value:"",
+              facebook: {
+                id:    profile.id,
+                token: token
+              }
+            };
+            return userModel.createUser(newFacebookUser);
+          }
+        },
+        function(err) {
+          if (err) { return done(err); }
+        }
+      )
+      .then(
+        function(user){
+          return done(null, user);
+        },
+        function(err){
+          if (err) { return done(err); }
+        }
+      );
+  }
+
+
+  function login(req, res) {
+    var user = req.user;
+    res.json(user);
+  }
+
+  function logout(req, res) {
+    req.logOut();
+    res.send(200);
+  }
+
+  function register(req, res) {
+    var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
+    userModel.createUser(user)
+      .then(function(user) {
+        console.log(user);
+        if(user){
+          req.login(user, function(err) {
+            if(err) {
+              res.status(400).send(err);
+            } else {
+              res.json(user);
+            }
+          });
+        }
+      });
+  }
+
+  function loggedIn(req, res) {
+    res.send(req.isAuthenticated() ? req.user : '0');
+  }
+
+
+
+
+
+
+
 
   function findUserByCredentials (username, password, req, res){
     userModel
@@ -71,16 +209,6 @@ module.exports = function (app, models) {
       .then(function(status){
         res.send(status);
       });
-
-    // userModel
-    //   .updateUser(userId, user)
-    //   .then(function (stats) {
-    //
-    //       res.send(200);
-    //     },
-    //     function (error) {
-    //       res.statusCode(404).send(error);
-    //     });
   }
 
   function findUserById(req, res) {

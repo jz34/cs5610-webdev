@@ -3,6 +3,7 @@ import {User} from '../../../models/user.model.client';
 import {UserService} from '../../../services/user.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ import {NgForm} from '@angular/forms';
 
 export class ProfileComponent implements OnInit {
   @ViewChild('f') LoginForm: NgForm;
-  user: User;
+  user: any;
   uid: String;
 
   username: String;
@@ -23,8 +24,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(private router: Router,
               private userService: UserService,
-              private route: ActivatedRoute) {
-    this.user = new User('', '', '', '', '', '');
+              private route: ActivatedRoute,
+              private sharedService: SharedService) {
+    // this.user = new User('', '', '', '', '', '');
   }
 
 
@@ -48,17 +50,24 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/login']);
+    this.userService.logout()
+      .subscribe(
+        (data: any) => this.router.navigate(['/login'])
+      );
   }
 
+
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.uid = params['uid'];
-      return this.userService.findUserById(this.uid).subscribe(
-        (user: User) => {
-          this.user = user;
-        }
-      );
-    });
+    this.user = this.sharedService.user;
+    this.uid = this.user['_id'];
+    // this.route.params.subscribe(params => {
+    //   this.uid = params['uid'];
+    //   return this.userService.findUserById(this.uid).subscribe(
+    //     (user: User) => {
+    //       this.user = user;
+    //     }
+    //   );
+    // });
   }
 }

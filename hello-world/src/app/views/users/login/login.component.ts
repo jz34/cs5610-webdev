@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
 import {User} from '../../../models/user.model.client';
 import {NgForm} from '@angular/forms';
+import 'rxjs/Rx';
+import {SharedService} from '../../../services/shared.service';
 
 
 @Component({
@@ -17,30 +19,53 @@ export class LoginComponent implements OnInit {
   errorFlag = false;
   errorMsg = 'Invalid username or password!';
 
-  constructor(private userService: UserService, private router: Router) {}
+  noUsername = false;
+  noPassword = false;
+  noUsernameMsg = 'Username is required!';
+  noPasswordMsg = 'Password is required!';
+
+  constructor(private userService: UserService, private router: Router, private sharedService: SharedService) {}
 
   login() {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-    // alert(this.username);
 
-    this.userService.findUserByCredentials(this.username, this.password).subscribe(
-      (user: User) => {
-        if (user) {
-          this.router.navigate(['/user', user._id ]);
-        } else {
+    if (this.username === '') {
+      this.noUsername = true;
+      return;
+    } else {
+      this.noUsername = false;
+    }
+
+    if (this.password === '') {
+      this.noPassword = true;
+      return;
+    } else {
+      this.noPassword = false;
+    }
+    // console.log('login username:    ', this.username);
+
+    this.userService.login(this.username, this.password)
+      .subscribe(
+        (data: any) => {
+          this.sharedService.user = data;
+          this.errorFlag = false;
+          this.router.navigate(['/profile']);
+          },
+        (error: any) => {
+          console.log(this.errorMsg);
           this.errorFlag = true;
         }
-      });
+      );
 
-//     {
-      //   this.errorFlag = false;
-      //   this.router.navigate(['/user', user._id ]);
-      //   },
-      // (error: any) => {
-      //   this.errorFlag = true;
-      //   }
-      // );
+    // this.userService.findUserByCredentials(this.username, this.password).subscribe(
+    //   (user: User) => {
+    //     if (user) {
+    //       this.router.navigate(['/user', user._id ]);
+    //     } else {
+    //       this.errorFlag = true;
+    //     }
+    //   });
   }
 
   register() {

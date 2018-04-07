@@ -1,4 +1,9 @@
 <nav class="navbar navbar-default">
+  <div *ngIf="noName"
+       class="alert alert-danger">
+    {{noNameMsg}}
+  </div>
+
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
@@ -8,7 +13,7 @@
       </a>
     </div>
     <div class="navbar-text pull-right">
-      <button routerLink="../" class="cl-icon-padding cl-text-black" (click)="f.ngSubmit.emit()">
+      <button class="cl-icon-padding cl-text-black" (click)="f.ngSubmit.emit()">
           <span class="glyphicon glyphicon-ok">
           </span>
       </button>

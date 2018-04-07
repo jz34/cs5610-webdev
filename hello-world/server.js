@@ -1,5 +1,12 @@
 var express = require('express');
 
+/* security   */
+var passport = require('passport');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+
+
 /* Mongodb    */
 
 var connectionString = 'mongodb://admin:admin@ds263837.mlab.com:63837/heroku_js3l1v9k';
@@ -18,6 +25,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'src/assets')));
+
+
+app.use(session({secret: 'This is a secret'}));
+
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
+// app.use(session({ secret: process.env.SESSION_SECRET }));
 
 //CORS
 app.use(function(reg, res, next){
@@ -50,7 +65,3 @@ server.listen( port , function() {
   console.log('Node app is running on port', app.get('port'))}); // get()???
 
 
-
-// // for ass5
-// var mongoose = require('mongoose');
-// var dbmongo = mongoose.connect('mongodb://localhost:27017/webdev');

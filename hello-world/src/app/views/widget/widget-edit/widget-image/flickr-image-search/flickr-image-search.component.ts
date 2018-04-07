@@ -14,7 +14,7 @@ export class FlickrImageSearchComponent implements OnInit {
   widget: Widget;
   websiteId: string;
   pageId: string;
-  userId: string;
+  // userId: string;
   // widgetId: string;
   photos: [any];
   error: string;
@@ -24,12 +24,12 @@ export class FlickrImageSearchComponent implements OnInit {
               private widgetService: WidgetService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
-     this.widget = new Widget('',  'IMAGE', this.pageId, '', '', '', '', false);
+     this.widget = new Widget('', '',  'IMAGE', this.pageId, '', '', '', '', false);
   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.userId = params['uid'];
+      // this.userId = params['uid'];
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
       // this.widgetId = params['wgId'];
@@ -94,8 +94,8 @@ export class FlickrImageSearchComponent implements OnInit {
 
     let url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server;
     url += '/' + photo.id + '_' + photo.secret + '_b.jpg';
-    console.log(this.widget);
-    console.log(this.widget._id);
+    // console.log(this.widget);
+    // console.log(this.widget._id);
     this.widget.url = url;
 
     // const widget = {
@@ -115,8 +115,7 @@ export class FlickrImageSearchComponent implements OnInit {
         (data: any) => {
           const result = data;
           if (result) {
-            this.router.navigate(['/user/' + this.userId +
-            '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
+            this.router.navigate(['/user/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
           } else {
             this.error = 'failed!';
           }

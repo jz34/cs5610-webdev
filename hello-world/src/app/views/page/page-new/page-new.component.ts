@@ -18,21 +18,29 @@ export class PageNewComponent implements OnInit {
   title: String;
   wid: String;
 
+  noName = false;
+  noNameMsg = 'Page name is required!';
+
   constructor(private router: Router,
               private pageService: PageService,
               private route: ActivatedRoute) {
   }
 
   createPage() {
+    this.name = this.pageForm.value.name;
+
+    if (this.name === '') {
+      this.noName = true;
+      return;
+    } else {
+      this.noName = false;
+    }
+
     this.pageService.createPage(this.wid, this.page).subscribe(
       (page: Page) => {
         this.page = page;
-        this.router.navigate(['../'], {relativeTo: this.route});
+        this.router.navigate(['/user', 'website', this.wid, 'page'], {relativeTo: this.route});
       });
-    // this.page.name = this.pageForm.value.name;
-    // this.page.title = this.pageForm.value.title;
-    // this.page.websiteId = this.websiteId;
-    // this.pageService.createPage(this.websiteId, this.page);
   }
 
   ngOnInit() {

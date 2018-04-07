@@ -21,12 +21,39 @@ import {WidgetTextComponent} from './views/widget/widget-edit/widget-text/widget
 
 import {FlickrImageSearchComponent} from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
+import {AuthGuard} from './services/auth-guard.service';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:uid', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'user/website', component: WebsiteListComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/new', component: WebsiteNewComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid', component: WebsiteEditComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page', component: PageListComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/new', component: PageNewComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid', component: PageEditComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid/widget', component: WidgetListComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid/widget/:wgId', component: WidgetEditComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid/widget/new/header', component: WidgetHeaderComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid/widget/new/image', component: WidgetImageComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid/widget/new/youtube', component: WidgetYoutubeComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid/widget/new/html', component: WidgetHtmlComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid/widget/new/text', component: WidgetTextComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:wid/page/:pid/widget/:wgId/flickr', component: FlickrImageSearchComponent, canActivate: [AuthGuard]}
+];
+
+export const routing = RouterModule.forRoot(appRoutes);
+
+
+/*
+const appRoutes: Routes = [
+  {path: '', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'user/:uid/website', component: WebsiteListComponent},
   {path: 'user/:uid/website/new', component: WebsiteNewComponent},
   {path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
@@ -43,5 +70,4 @@ const appRoutes: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid/widget/new/text', component: WidgetTextComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/:wgId/flickr', component: FlickrImageSearchComponent}
 ];
-
-export const routing = RouterModule.forRoot(appRoutes);
+ */

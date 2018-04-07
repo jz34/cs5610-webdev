@@ -1,4 +1,9 @@
 <nav class="navbar navbar-default">
+  <div *ngIf="noName"
+       class="alert alert-danger">
+    {{noNameMsg}}
+  </div>
+
   <div class="container-fluid row">
     <div class="navbar-text pull-left">
       <a routerLink="../" class="cl-text-black cl-icon-padding">
@@ -8,7 +13,7 @@
     </div>
 
     <div class="navbar-text pull-right">
-      <button routerLink="../" (click)="f.ngSubmit.emit()" [disabled]="!f.valid" class="btn btn-link cl-icon-padding cl-text-black">
+      <button (click)="f.ngSubmit.emit()" [disabled]="!f.valid" class="btn btn-link cl-icon-padding cl-text-black">
           <span class="glyphicon glyphicon-ok">
           </span>
       </button>
@@ -23,7 +28,12 @@
   <form (ngSubmit)="update()" #f="ngForm">
     <div class="form-group">
       <label for="image-name">Name</label>
-      <input type="text" class="form-control" id="image-name" placeholder="Name">
+      <input [(ngModel)] = "widget.name"
+             name = "name"
+             type="text"
+             class="form-control"
+             id="image-name"
+             placeholder="Name">
     </div>
     <div class="form-group">
       <label for="image-text">Text</label>
@@ -61,13 +71,13 @@
         <input  name="pageId" value="{{pid}}" style="display: none"/>
         <input  name="websiteId" value="{{wid}}" style="display: none"/>
         <input  name="userId" value="{{uid}}" style="display: none"/>
-        <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+        <button type="submit" class="btn btn-block btn-info">Upload Image</button>
       </form>
 
       <br>
       <a class="btn btn-primary btn-block "
 
-         [routerLink]="['/user/'+ uid + '/website/'+ wid +'/page/'+ pid +'/widget/'+ wgId +'/flickr']" >Choose From Flickr</a>
+         [routerLink]="['/user/website/'+ wid +'/page/'+ pid +'/widget/'+ wgId +'/flickr']" >Choose From Flickr</a>
 
     </div>
   </form>
@@ -79,7 +89,7 @@
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
 
-      <a href="../../../../../.." class="cl-icon-padding">
+      <a href="/profile" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
 

@@ -1,4 +1,9 @@
 <nav class="navbar navbar-default">
+  <div *ngIf="noName"
+       class="alert alert-danger">
+    {{noNameMsg}}
+  </div>
+
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
@@ -8,7 +13,7 @@
       </a>
     </div>
     <div class="navbar-text pull-right">
-      <button routerLink="../" (click)="f.ngSubmit.emit()" [disabled]="!f.valid" class="btn btn-link cl-icon-padding cl-text-black">
+      <button (click)="f.ngSubmit.emit()" [disabled]="!f.valid" class="btn btn-link cl-icon-padding cl-text-black">
           <span class="glyphicon glyphicon-ok">
           </span>
       </button>
@@ -23,7 +28,12 @@
   <form (ngSubmit)="update()" #f="ngForm">
     <div class="form-group">
       <label for="youtube-name">Name</label>
-      <input type="text" class="form-control" id="youtube-name" placeholder="Name">
+      <input [(ngModel)] = "widget.name"
+             name = "name"
+             type="text"
+             class="form-control"
+             id="youtube-name"
+             placeholder="Name">
     </div>
     <div class="form-group">
       <label for="youtube-text">Text</label>
@@ -53,14 +63,14 @@
              placeholder="{{widget.width}}">
     </div>
   </form>
-  <button routerLink="../" (click)="delete()" class="btn btn-danger btn-block" href="#">Delete</button>
+  <button (click)="delete()" class="btn btn-danger btn-block">Delete</button>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
 
-      <a href="../../../../../.." class="cl-icon-padding">
+      <a href="/profile" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
 

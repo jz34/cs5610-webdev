@@ -18,7 +18,11 @@ UserModel.findUserByUsername = findUserByUsername;
 UserModel.findUserByCredentials = findUserByCredentials;
 UserModel.updateUser = updateUser;
 UserModel.deleteUser = deleteUser;
+UserModel.findUserByFacebookId = findUserByFacebookId;
 
+function findUserByFacebookId(facebookId) {
+  return UserModel.findOne({"facebook.id": facebookId});
+}
 
 function createUser(user){
   user._id = mongoose.Types.ObjectId();

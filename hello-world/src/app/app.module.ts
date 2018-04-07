@@ -39,6 +39,9 @@ import {FlickrService} from './services/flickr.service.client';
 
 import {OrderByPipe} from './views/widget/widget-list/order-by-pipe.pipe';
 
+import {SharedService} from './services/shared.service';
+import {AuthGuard} from './services/auth-guard.service';
+
 
 @NgModule({
   declarations: [
@@ -71,7 +74,7 @@ import {OrderByPipe} from './views/widget/widget-list/order-by-pipe.pipe';
     HttpModule,
     QuillEditorModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, {provide: APP_BASE_HREF, useValue: '/'}],
+  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, SharedService, AuthGuard, {provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

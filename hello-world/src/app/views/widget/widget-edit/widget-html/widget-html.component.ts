@@ -13,30 +13,42 @@ import {WidgetService} from '../../../../services/widget.service.client';
 export class WidgetHtmlComponent implements OnInit {
   @ViewChild('f') widgetForm: NgForm;
   widget: Widget;
-  uid: String;
   wid: String;
   pid: String;
   wgId: String;
 
+  name: String;
+  noName = false;
+  noNameMsg = 'Widget name is required!';
+
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private widgetService: WidgetService) {
-    this.widget = new Widget('',  'HTML', this.pid, '', '', '', '', false);
+    this.widget = new Widget('',  '', 'HTML', this.pid, '', '', '', '', false);
   }
 
   updateHtml() {
+    this.name = this.widgetForm.value.name;
+
+    if (this.name === '') {
+      this.noName = true;
+      return;
+    } else {
+      this.noName = false;
+    }
+
     if (this.wgId === undefined) {
       this.widgetService.createWidget(this.pid, this.widget).subscribe(
         (widget: Widget) => {
           this.widget = widget;
-          this.router.navigate(['/user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+          this.router.navigate(['/user', 'website', this.wid, 'page', this.pid, 'widget']);
           // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
         }
       );
     } else {
       this.widgetService.updateWidget(this.widget).subscribe(
         () => {
-          this.router.navigate(['/user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+          this.router.navigate(['/user', 'website', this.wid, 'page', this.pid, 'widget']);
           // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
         }
       );
@@ -46,19 +58,18 @@ export class WidgetHtmlComponent implements OnInit {
   deleteHtml() {
     this.widgetService.deleteWidget(this.wgId).subscribe(
       () => {
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+        this.router.navigate(['/user', 'website', this.wid, 'page', this.pid, 'widget'], {relativeTo: this.activatedRoute});
       }
     );
   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
       this.wgId = params['wgId'];
       if (this.wgId === undefined) {
-        this.widget = new Widget('', 'HTML', this.pid, '', '', '', '', false);
+        this.widget = new Widget('', '', 'HTML', this.pid, '', '', '', '', false);
       } else {
         return this.widgetService.findWidgetById(this.wgId).subscribe(
           (widget: Widget) => {

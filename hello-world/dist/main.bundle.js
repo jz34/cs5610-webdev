@@ -170,12 +170,16 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__views_widget_widget_edit_widget_text_widget_text_component__ = __webpack_require__("../../../../../src/app/views/widget/widget-edit/widget-text/widget-text.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__services_flickr_service_client__ = __webpack_require__("../../../../../src/app/services/flickr.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__views_widget_widget_list_order_by_pipe_pipe__ = __webpack_require__("../../../../../src/app/views/widget/widget-list/order-by-pipe.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__services_auth_guard_service__ = __webpack_require__("../../../../../src/app/services/auth-guard.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -244,7 +248,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_21__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_27_ngx_quill_editor__["a" /* QuillEditorModule */]
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_22__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_23__services_website_service_client__["a" /* WebsiteService */], __WEBPACK_IMPORTED_MODULE_24__services_page_service_client__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_25__services_widget_service_client__["a" /* WidgetService */], __WEBPACK_IMPORTED_MODULE_31__services_flickr_service_client__["a" /* FlickrService */], { provide: __WEBPACK_IMPORTED_MODULE_26__angular_common__["a" /* APP_BASE_HREF */], useValue: '/' }],
+            providers: [__WEBPACK_IMPORTED_MODULE_22__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_23__services_website_service_client__["a" /* WebsiteService */], __WEBPACK_IMPORTED_MODULE_24__services_page_service_client__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_25__services_widget_service_client__["a" /* WidgetService */], __WEBPACK_IMPORTED_MODULE_31__services_flickr_service_client__["a" /* FlickrService */], __WEBPACK_IMPORTED_MODULE_33__services_shared_service__["a" /* SharedService */], __WEBPACK_IMPORTED_MODULE_34__services_auth_guard_service__["a" /* AuthGuard */], { provide: __WEBPACK_IMPORTED_MODULE_26__angular_common__["a" /* APP_BASE_HREF */], useValue: '/' }],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -279,6 +283,8 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__views_widget_widget_edit_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/views/widget/widget-edit/widget-html/widget-html.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__views_widget_widget_edit_widget_text_widget_text_component__ = __webpack_require__("../../../../../src/app/views/widget/widget-edit/widget-text/widget-text.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__views_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__ = __webpack_require__("../../../../../src/app/views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__ = __webpack_require__("../../../../../src/app/services/auth-guard.service.ts");
+
 
 
 
@@ -302,24 +308,47 @@ var appRoutes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_1__views_users_login_login_component__["a" /* LoginComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_1__views_users_login_login_component__["a" /* LoginComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_3__views_users_register_register_component__["a" /* RegisterComponent */] },
-    { path: 'user/:uid', component: __WEBPACK_IMPORTED_MODULE_2__views_users_profile_profile_component__["a" /* ProfileComponent */] },
-    { path: 'user/:uid/website', component: __WEBPACK_IMPORTED_MODULE_5__views_website_website_list_website_list_component__["a" /* WebsiteListComponent */] },
-    { path: 'user/:uid/website/new', component: __WEBPACK_IMPORTED_MODULE_4__views_website_website_new_website_new_component__["a" /* WebsiteNewComponent */] },
-    { path: 'user/:uid/website/:wid', component: __WEBPACK_IMPORTED_MODULE_6__views_website_website_edit_website_edit_component__["a" /* WebsiteEditComponent */] },
-    { path: 'user/:uid/website/:wid/page', component: __WEBPACK_IMPORTED_MODULE_7__views_page_page_list_page_list_component__["a" /* PageListComponent */] },
-    { path: 'user/:uid/website/:wid/page/new', component: __WEBPACK_IMPORTED_MODULE_8__views_page_page_new_page_new_component__["a" /* PageNewComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid', component: __WEBPACK_IMPORTED_MODULE_9__views_page_page_edit_page_edit_component__["a" /* PageEditComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget', component: __WEBPACK_IMPORTED_MODULE_10__views_widget_widget_list_widget_list_component__["a" /* WidgetListComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/new', component: __WEBPACK_IMPORTED_MODULE_11__views_widget_widget_chooser_widget_chooser_component__["a" /* WidgetChooserComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/:wgId', component: __WEBPACK_IMPORTED_MODULE_12__views_widget_widget_edit_widget_edit_component__["a" /* WidgetEditComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/new/header', component: __WEBPACK_IMPORTED_MODULE_13__views_widget_widget_edit_widget_header_widget_header_component__["a" /* WidgetHeaderComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/new/image', component: __WEBPACK_IMPORTED_MODULE_14__views_widget_widget_edit_widget_image_widget_image_component__["a" /* WidgetImageComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/new/youtube', component: __WEBPACK_IMPORTED_MODULE_15__views_widget_widget_edit_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/new/html', component: __WEBPACK_IMPORTED_MODULE_16__views_widget_widget_edit_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/new/text', component: __WEBPACK_IMPORTED_MODULE_17__views_widget_widget_edit_widget_text_widget_text_component__["a" /* WidgetTextComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/:wgId/flickr', component: __WEBPACK_IMPORTED_MODULE_18__views_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */] }
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_2__views_users_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website', component: __WEBPACK_IMPORTED_MODULE_5__views_website_website_list_website_list_component__["a" /* WebsiteListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/new', component: __WEBPACK_IMPORTED_MODULE_4__views_website_website_new_website_new_component__["a" /* WebsiteNewComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid', component: __WEBPACK_IMPORTED_MODULE_6__views_website_website_edit_website_edit_component__["a" /* WebsiteEditComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page', component: __WEBPACK_IMPORTED_MODULE_7__views_page_page_list_page_list_component__["a" /* PageListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/new', component: __WEBPACK_IMPORTED_MODULE_8__views_page_page_new_page_new_component__["a" /* PageNewComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid', component: __WEBPACK_IMPORTED_MODULE_9__views_page_page_edit_page_edit_component__["a" /* PageEditComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid/widget', component: __WEBPACK_IMPORTED_MODULE_10__views_widget_widget_list_widget_list_component__["a" /* WidgetListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid/widget/new', component: __WEBPACK_IMPORTED_MODULE_11__views_widget_widget_chooser_widget_chooser_component__["a" /* WidgetChooserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid/widget/:wgId', component: __WEBPACK_IMPORTED_MODULE_12__views_widget_widget_edit_widget_edit_component__["a" /* WidgetEditComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid/widget/new/header', component: __WEBPACK_IMPORTED_MODULE_13__views_widget_widget_edit_widget_header_widget_header_component__["a" /* WidgetHeaderComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid/widget/new/image', component: __WEBPACK_IMPORTED_MODULE_14__views_widget_widget_edit_widget_image_widget_image_component__["a" /* WidgetImageComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid/widget/new/youtube', component: __WEBPACK_IMPORTED_MODULE_15__views_widget_widget_edit_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid/widget/new/html', component: __WEBPACK_IMPORTED_MODULE_16__views_widget_widget_edit_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid/widget/new/text', component: __WEBPACK_IMPORTED_MODULE_17__views_widget_widget_edit_widget_text_widget_text_component__["a" /* WidgetTextComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'user/website/:wid/page/:pid/widget/:wgId/flickr', component: __WEBPACK_IMPORTED_MODULE_18__views_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_service__["a" /* AuthGuard */]] }
 ];
 var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* RouterModule */].forRoot(appRoutes);
+/*
+const appRoutes: Routes = [
+  {path: '', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'user/:uid/website', component: WebsiteListComponent},
+  {path: 'user/:uid/website/new', component: WebsiteNewComponent},
+  {path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
+  {path: 'user/:uid/website/:wid/page', component: PageListComponent},
+  {path: 'user/:uid/website/:wid/page/new', component: PageNewComponent},
+  {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/:wgId', component: WidgetEditComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/header', component: WidgetHeaderComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/image', component: WidgetImageComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/youtube', component: WidgetYoutubeComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/html', component: WidgetHtmlComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/text', component: WidgetTextComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/:wgId/flickr', component: FlickrImageSearchComponent}
+];
+ */
 
 
 /***/ }),
@@ -391,13 +420,14 @@ var Website = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Widget; });
 var Widget = /** @class */ (function () {
     // constructor(wgId, widgetType, pageId, size= '1', text = 'text', width = '100%', url = 'url') {
-    function Widget(wgId, widgetType, pageId, size, text, width, url, formatted) {
+    function Widget(wgId, name, widgetType, pageId, size, text, width, url, formatted) {
         if (size === void 0) { size = '1'; }
         if (text === void 0) { text = 'text'; }
         if (width === void 0) { width = '100%'; }
         if (url === void 0) { url = 'url'; }
         if (formatted === void 0) { formatted = false; }
         this._id = wgId;
+        this.name = name;
         this.widgetType = widgetType;
         this.pageId = pageId;
         this.size = size;
@@ -407,6 +437,45 @@ var Widget = /** @class */ (function () {
         this.formatted = formatted;
     }
     return Widget;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/auth-guard.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(userService, router) {
+        this.userService = userService;
+        this.router = router;
+    }
+    AuthGuard.prototype.canActivate = function () {
+        return this.userService.loggedIn();
+    };
+    AuthGuard = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+    ], AuthGuard);
+    return AuthGuard;
 }());
 
 
@@ -520,6 +589,33 @@ var PageService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/shared.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SharedService = /** @class */ (function () {
+    function SharedService() {
+        this.user = '';
+    }
+    SharedService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])()
+    ], SharedService);
+    return SharedService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/user.service.client.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -529,6 +625,8 @@ var PageService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -542,11 +640,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+ // 别忘了
+
 // injecting Http service into UserService
 var UserService = /** @class */ (function () {
-    function UserService(http) {
+    function UserService(http, router, sharedService) {
         this.http = http;
+        this.router = router;
+        this.sharedService = sharedService;
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
+        this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]();
     }
     UserService.prototype.createUser = function (user) {
         return this.http.post(this.baseUrl + '/api/user/', user).map(function (res) {
@@ -576,9 +679,56 @@ var UserService = /** @class */ (function () {
     UserService.prototype.deleteUser = function (userId) {
         return this.http.delete(this.baseUrl + '/api/user/' + userId);
     };
+    UserService.prototype.login = function (username, password) {
+        this.options.withCredentials = true;
+        var body = {
+            username: username,
+            password: password
+        };
+        return this.http.post(this.baseUrl + '/api/login', body, this.options)
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
+    };
+    UserService.prototype.logout = function () {
+        this.options.withCredentials = true;
+        return this.http.post(this.baseUrl + '/api/logout', '', this.options)
+            .map(function (res) {
+            var data = res;
+        });
+    };
+    UserService.prototype.register = function (username, password) {
+        this.options.withCredentials = true;
+        var user = {
+            username: username,
+            password: password
+        };
+        return this.http.post(this.baseUrl + '/api/register', user, this.options)
+            .map(function (res) {
+            var data = res.json();
+            return data;
+        });
+    };
+    UserService.prototype.loggedIn = function () {
+        var _this = this;
+        this.options.withCredentials = true;
+        return this.http.post(this.baseUrl + '/api/loggedIn', '', this.options)
+            .map(function (res) {
+            var user = res.json();
+            if (user !== '0') {
+                _this.sharedService.user = user; // setting user as global variable using shared service
+                return true;
+            }
+            else {
+                _this.router.navigate(['/login']);
+                return false;
+            }
+        });
+    };
     UserService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_4__shared_service__["a" /* SharedService */]])
     ], UserService);
     return UserService;
 }());
@@ -725,7 +875,7 @@ var WidgetService = /** @class */ (function () {
 /***/ "../../../../../src/app/views/page/page-edit/page-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <button routerLink=\"../\" class=\"btn btn-link cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Edit Page\n    </a>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <form (ngSubmit)=\"updatePage()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"page-name\">Name</label>\n      <input [(ngModel)]=\"page.name\"\n             name=\"name\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"page-name\"\n             placeholder=\"{{page.name}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"page-title\">Title</label>\n      <input [(ngModel)]=\"page.title\"\n             name=\"title\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"page-title\"\n             placeholder=\"{{page.title}}\"/>\n    </div>\n  </form>\n  <a routerLink=\"../\" (click)=\"deletePage()\" class=\"btn btn-danger  btn-block\">Delete</a>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <!--<div class=\"pull-right navbar-text\">-->\n      <!--<a href=\"../../..\" class=\"cl-icon-padding\">-->\n        <!--<span class=\"glyphicon glyphicon-user\"></span>-->\n      <!--</a>-->\n    <!--</div>-->\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div *ngIf=\"noName\"\n       class=\"alert alert-danger\">\n    {{noNameMsg}}\n  </div>\n\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <button class=\"btn btn-link cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Edit Page\n    </a>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <form (ngSubmit)=\"updatePage()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"page-name\">Name</label>\n      <input [(ngModel)]=\"page.name\"\n             name=\"name\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"page-name\"\n             placeholder=\"{{page.name}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"page-title\">Title</label>\n      <input [(ngModel)]=\"page.title\"\n             name=\"title\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"page-title\"\n             placeholder=\"{{page.title}}\"/>\n    </div>\n  </form>\n  <a (click)=\"deletePage()\" class=\"btn btn-danger  btn-block\">Delete</a>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <!--<div class=\"pull-right navbar-text\">-->\n      <!--<a href=\"../../..\" class=\"cl-icon-padding\">-->\n        <!--<span class=\"glyphicon glyphicon-user\"></span>-->\n      <!--</a>-->\n    <!--</div>-->\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -759,19 +909,29 @@ var PageEditComponent = /** @class */ (function () {
         this.pageService = pageService;
         this.route = route;
         this.pages = [];
+        this.noName = false;
+        this.noNameMsg = 'Page name is required!';
         this.page = new __WEBPACK_IMPORTED_MODULE_4__models_page_model_client__["a" /* Page */]('', '', '', '');
     }
     PageEditComponent.prototype.updatePage = function () {
         var _this = this;
+        this.name = this.pageForm.value.name;
+        if (this.name === '') {
+            this.noName = true;
+            return;
+        }
+        else {
+            this.noName = false;
+        }
         this.pageService.updatePage(this.page).subscribe(function (page) {
             _this.page = page;
-            _this.router.navigate(['../'], { relativeTo: _this.route });
+            _this.router.navigate(['/user', 'website', _this.wid, 'page'], { relativeTo: _this.route });
         });
     };
     PageEditComponent.prototype.deletePage = function () {
         var _this = this;
         this.pageService.deletePage(this.page._id).subscribe(function (page) {
-            _this.router.navigate(['../'], { relativeTo: _this.route });
+            _this.router.navigate(['/user', 'website', _this.wid, 'page'], { relativeTo: _this.route });
         });
     };
     PageEditComponent.prototype.ngOnInit = function () {
@@ -779,7 +939,7 @@ var PageEditComponent = /** @class */ (function () {
         this.route.params.subscribe(function (params) {
             _this.pid = params['pid'];
             // this.uid = params['uid'];
-            // this.wid = params['wid'];
+            _this.wid = params['wid'];
             return _this.pageService.findPageById(_this.pid).subscribe(function (page) {
                 _this.page = page;
             });
@@ -809,7 +969,7 @@ var PageEditComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/page/page-list/page-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../..\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"./new\" class=\"cl-icon-padding cl-text-black\">\n          <span class=\"glyphicon glyphicon-plus\">\n          </span>\n      </a>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Pages\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid cl-container-padding\">\n  <ul class=\"list-group cl-list-group-borderless\">\n    <div *ngFor=\"let page of pages\">\n      <li class=\"list-group-item cl-list-item-borderless\">\n        <a routerLink=\"./{{page._id}}\"><span class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n        <a routerLink=\"./{{page._id}}/widget\">{{page.name}}</a>\n      </li>\n    </div>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a routerLink=\"../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../..\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"./new\" class=\"cl-icon-padding cl-text-black\">\n          <span class=\"glyphicon glyphicon-plus\">\n          </span>\n      </a>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Pages\n    </a>\n  </div>\n</nav>\n\n\n<div class=\"container-fluid cl-container-padding\">\n  <ul class=\"list-group cl-list-group-borderless\">\n    <div *ngFor=\"let page of pages\">\n      <li class=\"list-group-item cl-list-item-borderless\">\n        <a routerLink=\"./{{page._id}}\"><span class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n        <a routerLink=\"./{{page._id}}/widget\">{{page.name}}</a>\n      </li>\n    </div>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a routerLink=\"/profile\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -866,7 +1026,7 @@ var PageListComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/page/page-new/page-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <button routerLink=\"../\" class=\"cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      New Page\n    </a>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <form (ngSubmit)=\"createPage()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"page-name\">Name</label>\n      <input [(ngModel)]=\"page.name\"\n             name=\"name\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"page-name\"\n             placeholder=\"Page Name\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"page-title\">Title</label>\n      <input [(ngModel)]=\"page.title\"\n             name=\"title\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"page-title\"\n             placeholder=\"Page Title\">\n    </div>\n  </form>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <!--<div class=\"pull-right navbar-text\">-->\n      <!--<a href=\"../../../..\" class=\"cl-icon-padding\">-->\n        <!--<span class=\"glyphicon glyphicon-user\"></span>-->\n      <!--</a>-->\n    <!--</div>-->\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div *ngIf=\"noName\"\n       class=\"alert alert-danger\">\n    {{noNameMsg}}\n  </div>\n\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <button class=\"cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      New Page\n    </a>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <form (ngSubmit)=\"createPage()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"page-name\">Name</label>\n      <input [(ngModel)]=\"page.name\"\n             name=\"name\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"page-name\"\n             placeholder=\"Page Name\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"page-title\">Title</label>\n      <input [(ngModel)]=\"page.title\"\n             name=\"title\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"page-title\"\n             placeholder=\"Page Title\">\n    </div>\n  </form>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <!--<div class=\"pull-right navbar-text\">-->\n      <!--<a href=\"../../../..\" class=\"cl-icon-padding\">-->\n        <!--<span class=\"glyphicon glyphicon-user\"></span>-->\n      <!--</a>-->\n    <!--</div>-->\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -900,17 +1060,23 @@ var PageNewComponent = /** @class */ (function () {
         this.pageService = pageService;
         this.route = route;
         this.pages = [];
+        this.noName = false;
+        this.noNameMsg = 'Page name is required!';
     }
     PageNewComponent.prototype.createPage = function () {
         var _this = this;
+        this.name = this.pageForm.value.name;
+        if (this.name === '') {
+            this.noName = true;
+            return;
+        }
+        else {
+            this.noName = false;
+        }
         this.pageService.createPage(this.wid, this.page).subscribe(function (page) {
             _this.page = page;
-            _this.router.navigate(['../'], { relativeTo: _this.route });
+            _this.router.navigate(['/user', 'website', _this.wid, 'page'], { relativeTo: _this.route });
         });
-        // this.page.name = this.pageForm.value.name;
-        // this.page.title = this.pageForm.value.title;
-        // this.page.websiteId = this.websiteId;
-        // this.pageService.createPage(this.websiteId, this.page);
     };
     PageNewComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -943,7 +1109,7 @@ var PageNewComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/users/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n\n  <div *ngIf=\"errorFlag\"\n             class=\"alert alert-danger\">\n  {{errorMsg}}\n</div>\n\n  <h1>Login</h1>\n\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\n    <!--<label>Username</label>-->\n    <input type=\"text\"\n           class=\"form-control\"\n           placeholder=\"username\"\n           name=\"username\"\n           ngModel\n           required\n           #username=\"ngModel\"/>\n    <span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">\n      Username missing!\n    </span>\n\n    <!--<label>Password</label>-->\n    <input type=\"password\"\n           class=\"form-control\"\n           placeholder=\"password\"\n           name=\"password\"\n           ngModel\n           required\n           #password=\"ngModel\"/>\n    <span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">\n      Password missing!\n    </span>\n\n    <button class=\"btn btn-primary btn-block\" type=\"submit\" [disabled]=\"!f.valid\">Login</button>\n    <button class=\"btn btn-success btn-block\" type=\"button\" (click)=\"register()\">Register</button>\n  </form>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n  {{errorMsg}}\n</div>\n\n  <div *ngIf=\"noUsername\"\n       class=\"alert alert-danger\">\n    {{noUsernameMsg}}\n  </div>\n\n  <div *ngIf=\"noPassword\"\n       class=\"alert alert-danger\">\n    {{noPasswordMsg}}\n  </div>\n\n  <h1>Login</h1>\n\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\n    <!--<label>Username</label>-->\n    <input type=\"text\"\n           class=\"form-control\"\n           placeholder=\"username\"\n           name=\"username\"\n           ngModel\n           required\n           #username=\"ngModel\"/>\n    <!--<span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">Username missing!</span>-->\n\n    <!--<label>Password</label>-->\n    <input type=\"password\"\n           class=\"form-control\"\n           placeholder=\"password\"\n           name=\"password\"\n           ngModel\n           required\n           #password=\"ngModel\"/>\n    <!--<span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">Password missing!</span>-->\n\n    <!--<button class=\"btn btn-primary btn-block\" type=\"submit\" [disabled]=\"!f.valid\">Login</button>-->\n    <button class=\"btn btn-primary btn-block\" type=\"submit\">Login</button>\n    <button class=\"btn btn-success btn-block\" type=\"button\" (click)=\"register()\">Register</button>\n    <!--<button class=\"btn btn-info btn-block\" type=\"button\" >Facebook</button>-->\n    <a href=\"/facebook/login\" class=\"btn btn-info btn-block\"> <span class=\"fa fa-facebook\"></span>\n      Facebook\n    </a>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -956,6 +1122,8 @@ module.exports = "<div class=\"container-fluid\">\n\n  <div *ngIf=\"errorFlag\"\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -969,34 +1137,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(userService, router) {
+    function LoginComponent(userService, router, sharedService) {
         this.userService = userService;
         this.router = router;
+        this.sharedService = sharedService;
         this.errorFlag = false;
         this.errorMsg = 'Invalid username or password!';
+        this.noUsername = false;
+        this.noPassword = false;
+        this.noUsernameMsg = 'Username is required!';
+        this.noPasswordMsg = 'Password is required!';
     }
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
-        // alert(this.username);
-        this.userService.findUserByCredentials(this.username, this.password).subscribe(function (user) {
-            if (user) {
-                _this.router.navigate(['/user', user._id]);
-            }
-            else {
-                _this.errorFlag = true;
-            }
+        if (this.username === '') {
+            this.noUsername = true;
+            return;
+        }
+        else {
+            this.noUsername = false;
+        }
+        if (this.password === '') {
+            this.noPassword = true;
+            return;
+        }
+        else {
+            this.noPassword = false;
+        }
+        // console.log('login username:    ', this.username);
+        this.userService.login(this.username, this.password)
+            .subscribe(function (data) {
+            _this.sharedService.user = data;
+            _this.errorFlag = false;
+            _this.router.navigate(['/profile']);
+        }, function (error) {
+            console.log(_this.errorMsg);
+            _this.errorFlag = true;
         });
-        //     {
-        //   this.errorFlag = false;
-        //   this.router.navigate(['/user', user._id ]);
-        //   },
-        // (error: any) => {
-        //   this.errorFlag = true;
-        //   }
-        // );
+        // this.userService.findUserByCredentials(this.username, this.password).subscribe(
+        //   (user: User) => {
+        //     if (user) {
+        //       this.router.navigate(['/user', user._id ]);
+        //     } else {
+        //       this.errorFlag = true;
+        //     }
+        //   });
     };
     LoginComponent.prototype.register = function () {
         this.router.navigate(['/register']);
@@ -1013,7 +1203,7 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/views/users/login/login.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_5__services_shared_service__["a" /* SharedService */]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -1025,7 +1215,7 @@ var LoginComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/users/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar cl-blue-navbar\">\n  <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n    Profile\n  </a>\n\n  <button  class=\"btn btn-link navbar-link navbar-text pull-right cl-text-white cl-icon-padding\" (click)=\"f.ngSubmit.emit()\">\n    <span class=\"glyphicon glyphicon-ok\"></span>\n  </button>\n</nav>\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"updateUser()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input [(ngModel)]=\"user.username\"\n             type=\"text\"\n             name=\"username\"\n             class=\"form-control\"\n             id=\"username\"\n             placeholder=\"Username\"/>\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email</label>\n      <input [(ngModel)]=\"user.email\"\n             name=\"email\"\n             type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             placeholder=\"xxxxxx@xxx.com\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"first-name\">First Name</label>\n      <input [(ngModel)]=\"user.firstName\"\n             type=\"text\"\n             name=\"firstName\"\n             class=\"form-control\"\n             id=\"first-name\"\n             placeholder=\"Russel\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"last-name\">Last Name</label>\n      <input [(ngModel)]=\"user.lastName\"\n             name=\"lastName\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"last-name\"\n             placeholder=\"Westbrook\">\n    </div>\n\n    <button routerLink=\"/user/{{uid}}/website\" class=\"btn btn-success btn-block\" type=\"button\">Website</button>\n    <button (click)=\"logout()\" class=\"btn btn-primary btn-block\" type=\"button\">Logout</button>\n    <button (click)=\"deleteUser()\" class=\"btn btn-danger btn-block\" type=\"button\">Delete</button>\n\n  </form>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom cl-blue-navbar\">\n</nav>\n"
+module.exports = "<nav class=\"navbar cl-blue-navbar\">\n  <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n    Profile\n  </a>\n\n  <button  class=\"btn btn-link navbar-link navbar-text pull-right cl-text-white cl-icon-padding\" (click)=\"f.ngSubmit.emit()\">\n    <span class=\"glyphicon glyphicon-ok\"></span>\n  </button>\n</nav>\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"updateUser()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input [(ngModel)]=\"user.username\"\n             type=\"text\"\n             name=\"username\"\n             class=\"form-control\"\n             id=\"username\"\n             placeholder=\"Username\"/>\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email</label>\n      <input [(ngModel)]=\"user.email\"\n             name=\"email\"\n             type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             placeholder=\"xxxxxx@xxx.com\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"first-name\">First Name</label>\n      <input [(ngModel)]=\"user.firstName\"\n             type=\"text\"\n             name=\"firstName\"\n             class=\"form-control\"\n             id=\"first-name\"\n             placeholder=\"Russel\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"last-name\">Last Name</label>\n      <input [(ngModel)]=\"user.lastName\"\n             name=\"lastName\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"last-name\"\n             placeholder=\"Westbrook\">\n    </div>\n\n    <button routerLink=\"/user/website\" class=\"btn btn-success btn-block\" type=\"button\">Website</button>\n    <button (click)=\"logout()\" class=\"btn btn-primary btn-block\" type=\"button\">Logout</button>\n    <button (click)=\"deleteUser()\" class=\"btn btn-danger btn-block\" type=\"button\">Delete</button>\n\n  </form>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom cl-blue-navbar\">\n</nav>\n"
 
 /***/ }),
 
@@ -1035,10 +1225,10 @@ module.exports = "<nav class=\"navbar cl-blue-navbar\">\n  <a class=\"navbar-bra
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model_client__ = __webpack_require__("../../../../../src/app/models/user.model.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1054,11 +1244,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent(router, userService, route) {
+    function ProfileComponent(router, userService, route, sharedService) {
         this.router = router;
         this.userService = userService;
         this.route = route;
-        this.user = new __WEBPACK_IMPORTED_MODULE_1__models_user_model_client__["a" /* User */]('', '', '', '', '', '');
+        this.sharedService = sharedService;
+        // this.user = new User('', '', '', '', '', '');
     }
     ProfileComponent.prototype.updateUser = function () {
         var _this = this;
@@ -1075,20 +1266,26 @@ var ProfileComponent = /** @class */ (function () {
         });
     };
     ProfileComponent.prototype.logout = function () {
-        this.router.navigate(['/login']);
+        var _this = this;
+        // this.router.navigate(['/login']);
+        this.userService.logout()
+            .subscribe(function (data) { return _this.router.navigate(['/login']); });
     };
     ProfileComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.route.params.subscribe(function (params) {
-            _this.uid = params['uid'];
-            return _this.userService.findUserById(_this.uid).subscribe(function (user) {
-                _this.user = user;
-            });
-        });
+        this.user = this.sharedService.user;
+        this.uid = this.user['_id'];
+        // this.route.params.subscribe(params => {
+        //   this.uid = params['uid'];
+        //   return this.userService.findUserById(this.uid).subscribe(
+        //     (user: User) => {
+        //       this.user = user;
+        //     }
+        //   );
+        // });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('f'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* NgForm */])
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */])
     ], ProfileComponent.prototype, "LoginForm", void 0);
     ProfileComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1096,9 +1293,10 @@ var ProfileComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/views/users/profile/profile.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_1__services_user_service_client__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_4__services_shared_service__["a" /* SharedService */]])
     ], ProfileComponent);
     return ProfileComponent;
 }());
@@ -1110,7 +1308,7 @@ var ProfileComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/users/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div *ngIf=\"pwNotMatch\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <h1>Register</h1>\n\n  <form (ngSubmit)=\"register()\" #f=\"ngForm\">\n    <!--<label>UserName</label>-->\n    <input type=\"text\"\n           class=\"form-control\"\n           placeholder=\"username\"\n           name=\"username\"\n           id=\"username\"\n           ngModel\n           required\n           #username=\"ngModel\"/>\n\n    <!--<label>Password</label>-->\n    <input type=\"password\"\n           class=\"form-control\"\n           placeholder=\"password\"\n           name=\"password\"\n           id=\"password\"\n           ngModel\n           required\n           #password=\"ngModel\"/>\n\n    <!--<label>Verify Password</label>-->\n    <input type=\"password\"\n           class=\"form-control\"\n           placeholder=\"verify password\"\n           name=\"verifypw\"\n           id=\"verifypw\"\n           ngModel\n           required\n           #verifypw=\"ngModel\"/>\n\n    <button class=\"btn btn-primary btn-block\" type=\"submit\" [disabled]=\"!f.valid\">Register</button>\n    <button class=\"btn btn-danger btn-block\" type=\"button\" (click)=\"login()\">Cancel</button>\n  </form>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <div *ngIf=\"pwNotMatch\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <div *ngIf=\"noUsernameError\"\n       class=\"alert alert-danger\">\n    {{noUsername}}\n  </div>\n\n  <div *ngIf=\"noPasswordError\"\n       class=\"alert alert-danger\">\n    {{noPassword}}\n  </div>\n\n  <div *ngIf=\"noVerifyPasswordError\"\n       class=\"alert alert-danger\">\n    {{noVerifyPassword}}\n  </div>\n\n  <h1>Register</h1>\n\n  <form (ngSubmit)=\"register()\" #f=\"ngForm\">\n    <!--<label>UserName</label>-->\n    <input type=\"text\"\n           class=\"form-control\"\n           placeholder=\"username\"\n           name=\"username\"\n           id=\"username\"\n           ngModel\n           required\n           #username=\"ngModel\"/>\n    <!--<span class=\"alert alert-danger\" *ngIf=\"!username.valid && username.touched\">*Please enter username!</span>-->\n\n    <!--<label>Password</label>-->\n    <input type=\"password\"\n           class=\"form-control\"\n           placeholder=\"password\"\n           name=\"password\"\n           id=\"password\"\n           ngModel\n           required\n           #password=\"ngModel\"/>\n\n    <!--<label>Verify Password</label>-->\n    <input type=\"password\"\n           class=\"form-control\"\n           placeholder=\"verify password\"\n           name=\"verifypw\"\n           id=\"verifypw\"\n           ngModel\n           required\n           #verifypw=\"ngModel\"/>\n\n    <!--<button class=\"btn btn-primary btn-block\" type=\"submit\" [disabled]=\"!f.valid\">Register</button>-->\n    <button class=\"btn btn-primary btn-block\" type=\"submit\">Register</button>\n    <button class=\"btn btn-danger btn-block\" type=\"button\" (click)=\"login()\">Cancel</button>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -1144,20 +1342,56 @@ var RegisterComponent = /** @class */ (function () {
         this.router = router;
         this.pwNotMatch = false;
         this.errorMsg = 'Passwords don\'t match!';
+        this.noUsernameError = false;
+        this.noPasswordError = false;
+        this.noVerifyPasswordError = false;
+        this.noUsername = 'Username is required!';
+        this.noPassword = 'Password is required!';
+        this.noVerifyPassword = 'Verify Password is required!';
     }
     RegisterComponent.prototype.register = function () {
         var _this = this;
         this.username = this.registerForm.value.username;
         this.password = this.registerForm.value.password;
         this.verifypw = this.registerForm.value.verifypw;
+        if (this.username === '') {
+            this.noUsernameError = true;
+            return;
+        }
+        else {
+            this.noUsernameError = false;
+        }
+        if (this.password === '') {
+            this.noPasswordError = true;
+            return;
+        }
+        else {
+            this.noPasswordError = false;
+        }
+        if (this.verifypw === '') {
+            this.noVerifyPasswordError = true;
+            return;
+        }
+        else {
+            this.noVerifyPasswordError = false;
+        }
         if (this.password !== this.verifypw) {
             this.pwNotMatch = true;
             return;
         }
         var newUser = new __WEBPACK_IMPORTED_MODULE_4__models_user_model_client__["a" /* User */]('', this.username, this.password, '', '', '');
-        this.userService.createUser(newUser).subscribe(function (user) {
-            _this.router.navigate(['/user', user._id]);
+        this.userService.register(this.username, this.password)
+            .subscribe(function (data) {
+            _this.router.navigate(['/profile']);
+        }, function (error) {
+            console.log(error);
+            _this.error = error._body;
         });
+        // this.userService.createUser(newUser).subscribe(
+        //   (user: User) => {
+        //     this.router.navigate(['/user', user._id]);
+        //   }
+        // );
     };
     RegisterComponent.prototype.login = function () {
         this.router.navigate(['/login']);
@@ -1186,7 +1420,7 @@ var RegisterComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/website/website-edit/website-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar cl-blue-navbar\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <div class=\"container-fluid\">\n        <p class=\"navbar-text pull-left\">\n          <a routerLink=\"../\" class=\"navbar-link cl-text-white\">\n            <span class=\"glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </p>\n        <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n          Websites\n        </a>\n        <a routerLink=\"../new\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 col-md-8 col-lg-8\">\n      <div class=\"container-fluid\">\n        <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n          Edit Websites\n        </a>\n        <button routerLink=\"../\" class=\"btn btn-link navbar-link navbar-text pull-right cl-text-white cl-icon-padding\"\n                (click)=\"f.ngSubmit.emit()\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </button>\n      </div>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"contain-fluid\">\n  <div class=\"col-xs-4 hidden-xs\">\n    <ul class=\"list-group cl-list-group-borderless\" >\n      <div *ngFor=\"let website of websites\">\n        <li class=\"list-group-item cl-list-item-borderless\">\n          <a routerLink=\"../{{website._id}}\"><span class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          <a routerLink=\"../{{website._id}}/page\">{{website.name}}</a>\n        </li>\n      </div>\n    </ul>\n  </div>\n\n\n  <div class=\"col-xs-12 col-sm-8 col-md-8 col-lg-8 borders cl-group-padding\">\n    <form (ngSubmit)=\"updateWebsite()\" #f=\"ngForm\">\n      <div class=\"form-group\">\n        <label for=\"website-name\">Website Name</label>\n        <input [(ngModel)]=\"website.name\"\n               name=\"name\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"website-name\"\n               placeholder=\"{{website.name}}\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"website-description\">Website Description</label>\n        <textarea [(ngModel)]=\"website.description\"\n                  id=\"website-description\"\n                  class=\"form-control\"\n                  rows=\"5\"\n                  name=\"description\"\n                  placeholder=\"{{website.description}}\"></textarea>\n      </div>\n      <a routerLink=\"../\" (click)=\"deleteWebsite()\" class=\"btn btn-danger  btn-block\">Delete</a>\n    </form>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom cl-blue-navbar\">\n  <div class=\"container-fuild\">\n    <a routerLink=\"../..\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n      <span class=\"glyphicon glyphicon-user\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar cl-blue-navbar\">\n  <div *ngIf=\"noName\"\n       class=\"alert alert-danger\">\n    {{noNameMsg}}\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <div class=\"container-fluid\">\n        <p class=\"navbar-text pull-left\">\n          <a routerLink=\"../\" class=\"navbar-link cl-text-white\">\n            <span class=\"glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </p>\n        <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n          Websites\n        </a>\n        <a routerLink=\"../new\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 col-md-8 col-lg-8\">\n      <div class=\"container-fluid\">\n        <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n          Edit Websites\n        </a>\n        <button class=\"btn btn-link navbar-link navbar-text pull-right cl-text-white cl-icon-padding\"\n                (click)=\"f.ngSubmit.emit()\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </button>\n      </div>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"contain-fluid\">\n  <div class=\"col-xs-4 hidden-xs\">\n    <ul class=\"list-group cl-list-group-borderless\" >\n      <div *ngFor=\"let website of websites\">\n        <li class=\"list-group-item cl-list-item-borderless\">\n          <a routerLink=\"../{{website._id}}\"><span class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          <a routerLink=\"../{{website._id}}/page\">{{website.name}}</a>\n        </li>\n      </div>\n    </ul>\n  </div>\n\n\n  <div class=\"col-xs-12 col-sm-8 col-md-8 col-lg-8 borders cl-group-padding\">\n    <form (ngSubmit)=\"updateWebsite()\" #f=\"ngForm\">\n      <div class=\"form-group\">\n        <label for=\"website-name\">Website Name</label>\n        <input [(ngModel)]=\"website.name\"\n               name=\"name\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"website-name\"\n               placeholder=\"{{website.name}}\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"website-description\">Website Description</label>\n        <textarea [(ngModel)]=\"website.description\"\n                  id=\"website-description\"\n                  class=\"form-control\"\n                  rows=\"5\"\n                  name=\"description\"\n                  placeholder=\"{{website.description}}\"></textarea>\n      </div>\n      <a (click)=\"deleteWebsite()\" class=\"btn btn-danger  btn-block\">Delete</a>\n    </form>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom cl-blue-navbar\">\n  <div class=\"container-fuild\">\n    <a routerLink=\"/profile\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n      <span class=\"glyphicon glyphicon-user\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1200,6 +1434,7 @@ module.exports = "<nav class=\"navbar cl-blue-navbar\">\n  <div class=\"row\">\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__ = __webpack_require__("../../../../../src/app/models/website.model.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1214,37 +1449,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WebsiteEditComponent = /** @class */ (function () {
-    function WebsiteEditComponent(router, websiteService, route) {
+    function WebsiteEditComponent(router, websiteService, route, sharedService) {
         this.router = router;
         this.websiteService = websiteService;
         this.route = route;
+        this.sharedService = sharedService;
         this.websites = [];
+        this.noName = false;
+        this.noNameMsg = 'Website name is required!';
         this.website = new __WEBPACK_IMPORTED_MODULE_3__models_website_model_client__["a" /* Website */]('', '', '', '');
     }
     WebsiteEditComponent.prototype.updateWebsite = function () {
         var _this = this;
+        this.name = this.websiteForm.value.name;
+        if (this.name === '') {
+            this.noName = true;
+            return;
+        }
+        else {
+            this.noName = false;
+        }
         this.websiteService.updateWebsite(this.website).subscribe(function (website) {
             _this.website = website;
-            _this.router.navigate(['../'], { relativeTo: _this.route });
+            _this.router.navigate(['/user', 'website'], { relativeTo: _this.route });
         });
     };
     WebsiteEditComponent.prototype.deleteWebsite = function () {
         var _this = this;
         this.websiteService.deleteWebsite(this.website._id).subscribe(function (data) {
-            _this.router.navigate(['../'], { relativeTo: _this.route });
+            _this.router.navigate(['/user', 'website'], { relativeTo: _this.route });
         });
     };
     WebsiteEditComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
+            var user = _this.sharedService.user;
+            _this.uid = user['_id'];
+            _this.websiteService.findWebsitesByUser(_this.uid).subscribe(function (websites) {
+                _this.websites = websites;
+            });
             _this.wid = params['wid'];
             _this.websiteService.findWebsitesById(_this.wid).subscribe(function (website) {
                 _this.website = website;
-            });
-            _this.uid = params['uid'];
-            _this.websiteService.findWebsitesByUser(params['uid']).subscribe(function (websites) {
-                _this.websites = websites;
             });
         });
     };
@@ -1260,7 +1508,8 @@ var WebsiteEditComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_4__services_website_service_client__["a" /* WebsiteService */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]])
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_5__services_shared_service__["a" /* SharedService */]])
     ], WebsiteEditComponent);
     return WebsiteEditComponent;
 }());
@@ -1272,7 +1521,7 @@ var WebsiteEditComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/website/website-list/website-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <nav class=\"navbar cl-blue-navbar\">\n    <!--nav bar 改下-->\n    <div class=\"container-fluid\">\n      <p class=\"navbar-text pull-left\">\n        <a routerLink=\"../\">\n          <span class=\"glyphicon glyphicon-chevron-left cl-text-white\"></span>\n        </a>\n      </p>\n      <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n        <span style=\"color: white; \">Website</span>\n      </a>\n      <a routerLink=\"./new\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-plus\"></span>\n      </a>\n    </div>\n  </nav>\n\n  <div class=\"container-fluid\">\n    <ul class=\"list-group cl-list-group-borderless\">\n      <div *ngFor=\"let website of websites\">\n        <li class=\"list-group-item cl-list-item-borderless\">\n          <a routerLink=\"./{{website._id}}\"><span class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          <a routerLink=\"./{{website._id}}/page\">{{website.name}}</a>\n        </li>\n      </div>\n    </ul>\n  </div>\n\n  <nav class=\"navbar navbar-fixed-bottom cl-blue-navbar\">\n    <div class=\"container-fuild\">\n      <a routerLink=\"../\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </div>\n  </nav>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <nav class=\"navbar cl-blue-navbar\">\n    <!--nav bar 改下-->\n    <div class=\"container-fluid\">\n      <p class=\"navbar-text pull-left\">\n        <a routerLink=\"/profile\">\n          <span class=\"glyphicon glyphicon-chevron-left cl-text-white\"></span>\n        </a>\n      </p>\n      <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n        <span style=\"color: white; \">Website</span>\n      </a>\n      <a routerLink=\"./new\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-plus\"></span>\n      </a>\n    </div>\n  </nav>\n\n  <div class=\"container-fluid\">\n    <ul class=\"list-group cl-list-group-borderless\">\n      <div *ngFor=\"let website of websites\">\n        <li class=\"list-group-item cl-list-item-borderless\">\n          <a routerLink=\"./{{website._id}}\"><span class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          <a routerLink=\"./{{website._id}}/page\">{{website.name}}</a>\n        </li>\n      </div>\n    </ul>\n  </div>\n\n  <nav class=\"navbar navbar-fixed-bottom cl-blue-navbar\">\n    <div class=\"container-fuild\">\n      <a routerLink=\"/profile\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </div>\n  </nav>\n</div>\n"
 
 /***/ }),
 
@@ -1285,6 +1534,7 @@ module.exports = "<div class=\"container-fluid\">\n  <nav class=\"navbar cl-blue
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1298,21 +1548,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WebsiteListComponent = /** @class */ (function () {
-    function WebsiteListComponent(domSanitizer, websiteService, activatedRoute) {
+    function WebsiteListComponent(domSanitizer, websiteService, activatedRoute, sharedService) {
         this.domSanitizer = domSanitizer;
         this.websiteService = websiteService;
         this.activatedRoute = activatedRoute;
+        this.sharedService = sharedService;
         this.websites = [];
     }
     WebsiteListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.activatedRoute.params.subscribe(function (params) {
-            _this.uid = params['uid'];
-            return _this.websiteService.findWebsitesByUser(_this.uid).subscribe(function (websites) {
-                _this.websites = websites;
-            });
+        var user = this.sharedService.user;
+        this.uid = user['_id'];
+        return this.websiteService.findWebsitesByUser(this.uid).subscribe(function (websites) {
+            _this.websites = websites;
         });
+        // this.activatedRoute.params.subscribe(params => {
+        //   this.uid = this.sharedService.user['_uid'];
+        //   return this.websiteService.findWebsitesByUser(this.uid).subscribe(
+        //     (websites: Website[]) => {
+        //       this.websites = websites;
+        //   }
+        //   );
+        // });
     };
     WebsiteListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1320,7 +1579,10 @@ var WebsiteListComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/views/website/website-list/website-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["b" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1__services_website_service_client__["a" /* WebsiteService */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["b" /* DomSanitizer */],
+            __WEBPACK_IMPORTED_MODULE_1__services_website_service_client__["a" /* WebsiteService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_4__services_shared_service__["a" /* SharedService */]])
     ], WebsiteListComponent);
     return WebsiteListComponent;
 }());
@@ -1332,7 +1594,7 @@ var WebsiteListComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/website/website-new/website-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar cl-blue-navbar\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <div class=\"container-fluid\">\n        <p class=\"navbar-text pull-left\">\n          <a routerLink=\"../\" class=\"navbar-link cl-text-white\">\n            <span class=\"glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </p>\n        <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n          Website\n        </a>\n        <a routerLink=\"../new\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 col-md-8 col-lg-8\">\n      <div class=\"container-fluid\">\n        <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n          New Websites\n        </a>\n        <button routerLink=\"../\" class=\"btn btn-link navbar-link navbar-text pull-right cl-text-white cl-icon-padding\"\n                (click)=\"f.ngSubmit.emit()\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </button>\n      </div>\n    </div>\n  </div>\n</nav>\n\n<div class=\"contain-fluid\">\n  <div class=\"col-xs-4 hidden-xs\">\n    <ul class=\"list-group cl-list-group-borderless\">\n      <div *ngFor=\"let website of websites\">\n        <li class=\"list-group-item cl-list-item-borderless\">\n          <a routerLink=\"../{{website.uid}}\"><span class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          <a routerLink=\"../{{website.uid}}/page\">{{website.name}}</a>\n        </li>\n      </div>\n    </ul>\n  </div>\n  <div class=\"col-xs-12 col-sm-8 col-md-8 col-lg-8 borders cl-group-padding\">\n    <form (ngSubmit)=\"createWebsite()\" #f=\"ngForm\">\n      <div class=\"form-group\">\n        <label for=\"website-name\">Name</label>\n        <input [(ngModel)]=\"website.name\"\n               name=\"name\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"website-name\"\n               placeholder=\"Name\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"website-description\">Description</label>\n        <textarea [(ngModel)]=\"website.description\"\n                  name=\"description\"\n                  id=\"website-description\"\n                  class=\"form-control\"\n                  rows=\"5\"\n                  placeholder=\"Description\"></textarea>\n      </div>\n    </form>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom cl-blue-navbar\">\n  <div class=\"container-fuild\">\n    <a routerLink=\"../..\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n      <span class=\"glyphicon glyphicon-user\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar cl-blue-navbar\">\n  <div *ngIf=\"noName\"\n       class=\"alert alert-danger\">\n    {{noNameMsg}}\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <div class=\"container-fluid\">\n        <p class=\"navbar-text pull-left\">\n          <a routerLink=\"../\" class=\"navbar-link cl-text-white\">\n            <span class=\"glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </p>\n        <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n          Website\n        </a>\n        <a routerLink=\"../new\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 col-md-8 col-lg-8\">\n      <div class=\"container-fluid\">\n        <a class=\"cl-text-white navbar-brand cl-text-bold\" href=\"#\">\n          New Websites\n        </a>\n        <button class=\"btn btn-link navbar-link navbar-text pull-right cl-text-white cl-icon-padding\"\n                (click)=\"f.ngSubmit.emit()\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </button>\n      </div>\n    </div>\n  </div>\n</nav>\n\n<div class=\"contain-fluid\">\n  <div class=\"col-xs-4 hidden-xs\">\n    <ul class=\"list-group cl-list-group-borderless\">\n      <div *ngFor=\"let website of websites\">\n        <li class=\"list-group-item cl-list-item-borderless\">\n          <a routerLink=\"../{{website.uid}}\"><span class=\"glyphicon glyphicon-cog pull-right\"></span></a>\n          <a routerLink=\"../{{website.uid}}/page\">{{website.name}}</a>\n        </li>\n      </div>\n    </ul>\n  </div>\n  <div class=\"col-xs-12 col-sm-8 col-md-8 col-lg-8 borders cl-group-padding\">\n    <form (ngSubmit)=\"createWebsite()\" #f=\"ngForm\">\n      <div class=\"form-group\">\n        <label for=\"website-name\">Name</label>\n        <input [(ngModel)]=\"website.name\"\n               name=\"name\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"website-name\"\n               placeholder=\"Name\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"website-description\">Description</label>\n        <textarea [(ngModel)]=\"website.description\"\n                  name=\"description\"\n                  id=\"website-description\"\n                  class=\"form-control\"\n                  rows=\"5\"\n                  placeholder=\"Description\"></textarea>\n      </div>\n    </form>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-fixed-bottom cl-blue-navbar\">\n  <div class=\"container-fuild\">\n    <a routerLink=\"/profile\" class=\"navbar-link navbar-text pull-right cl-text-white cl-icon-padding\">\n      <span class=\"glyphicon glyphicon-user\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1346,6 +1608,7 @@ module.exports = "<nav class=\"navbar cl-blue-navbar\">\n  <div class=\"row\">\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_website_model_client__ = __webpack_require__("../../../../../src/app/models/website.model.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1360,24 +1623,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WebsiteNewComponent = /** @class */ (function () {
-    function WebsiteNewComponent(router, websiteService, route) {
+    function WebsiteNewComponent(router, websiteService, route, sharedService) {
         this.router = router;
         this.websiteService = websiteService;
         this.route = route;
+        this.sharedService = sharedService;
         this.websites = [];
+        this.noName = false;
+        this.noNameMsg = 'Website name is required!';
     }
     WebsiteNewComponent.prototype.createWebsite = function () {
         var _this = this;
+        this.name = this.websiteForm.value.name;
+        if (this.name === '') {
+            this.noName = true;
+            return;
+        }
+        else {
+            this.noName = false;
+        }
         this.websiteService.createWebsite(this.uid, this.website).subscribe(function (website) {
             _this.website = website;
-            _this.router.navigate(['../'], { relativeTo: _this.route });
+            _this.router.navigate(['/user', 'website'], { relativeTo: _this.route });
         });
     };
     WebsiteNewComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
-            _this.uid = params['uid'];
+            var user = _this.sharedService.user;
+            _this.uid = user['_id'];
             _this.website = new __WEBPACK_IMPORTED_MODULE_4__models_website_model_client__["a" /* Website */]('', '', _this.uid, '');
             return _this.websiteService.findWebsitesByUser(_this.uid).subscribe(function (websites) {
                 _this.websites = websites;
@@ -1396,7 +1672,8 @@ var WebsiteNewComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__["a" /* WebsiteService */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]])
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_5__services_shared_service__["a" /* SharedService */]])
     ], WebsiteNewComponent);
     return WebsiteNewComponent;
 }());
@@ -1408,7 +1685,7 @@ var WebsiteNewComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/widget/widget-chooser/widget-chooser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Choose Widget\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid cl-container-padding\">\n  <ul class=\"list-group cl-list-group-borderless\">\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./header\">Header</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Label</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./html\">HTML</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./text\">Text Input</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Link</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Button</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./image\">Image</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./youtube\">YouTube</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Data Table</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Repeater</a>\n    </li>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a href=\"../../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Choose Widget\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid cl-container-padding\">\n  <ul class=\"list-group cl-list-group-borderless\">\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./header\">Header</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Label</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./html\">HTML</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./text\">Text Input</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Link</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Button</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./image\">Image</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"./youtube\">YouTube</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Data Table</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Repeater</a>\n    </li>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a href=\"/profile\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1480,7 +1757,7 @@ var WidgetEditComponent = /** @class */ (function () {
     function WidgetEditComponent(activatedRoute, widgetService) {
         this.activatedRoute = activatedRoute;
         this.widgetService = widgetService;
-        this.widget = new __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__["a" /* Widget */]('', '', '', '', '', '', '', false);
+        this.widget = new __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__["a" /* Widget */]('', '', '', '', '', '', '', '', false);
     }
     WidgetEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1509,7 +1786,7 @@ var WidgetEditComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/widget/widget-edit/widget-header/widget-header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <button routerLink=\"../\" class=\"btn btn-link cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"heading-name\">Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"heading-name\"\n             placeholder=\"Name\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"heading-text\">Text</label>\n      <input [(ngModel)]=\"widget.text\"\n             name=\"text\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"heading-text\"\n             placeholder=\"{{widget.text}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"heading-size\">Size</label>\n      <input [(ngModel)]=\"widget.size\"\n             name=\"size\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"heading-size\"\n             placeholder=\"{{widget.size}}\">\n    </div>\n  </form>\n  <a routerLink=\"../\" (click)=\"delete()\" class=\"btn btn-danger  btn-block\">Delete</a>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a routerLink=\"../../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div *ngIf=\"noName\"\n       class=\"alert alert-danger\">\n    {{noNameMsg}}\n  </div>\n\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <button class=\"btn btn-link cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"heading-name\">Name</label>\n      <input [(ngModel)] = \"widget.name\"\n             name = \"name\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"heading-name\"\n             placeholder=\"Name\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"heading-text\">Text</label>\n      <input [(ngModel)]=\"widget.text\"\n             name=\"text\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"heading-text\"\n             placeholder=\"{{widget.text}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"heading-size\">Size</label>\n      <input [(ngModel)]=\"widget.size\"\n             name=\"size\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"heading-size\"\n             placeholder=\"{{widget.size}}\">\n    </div>\n  </form>\n  <a (click)=\"delete()\" class=\"btn btn-danger  btn-block\">Delete</a>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a routerLink=\"/profile\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1542,20 +1819,30 @@ var WidgetHeaderComponent = /** @class */ (function () {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.widgetService = widgetService;
-        this.widget = new __WEBPACK_IMPORTED_MODULE_2__models_widget_model_client__["a" /* Widget */]('', 'HEADER', this.pid, '', '', '', '', false);
+        this.noName = false;
+        this.noNameMsg = 'Widget name is required!';
+        this.widget = new __WEBPACK_IMPORTED_MODULE_2__models_widget_model_client__["a" /* Widget */]('', '', 'HEADER', this.pid, '', '', '', '', false);
     }
     WidgetHeaderComponent.prototype.update = function () {
         var _this = this;
+        this.name = this.widgetForm.value.name;
+        if (this.name === '') {
+            this.noName = true;
+            return;
+        }
+        else {
+            this.noName = false;
+        }
         if (this.wgId === undefined) {
             this.widgetService.createWidget(this.pid, this.widget).subscribe(function (widget) {
                 _this.widget = widget;
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
                 // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
             });
         }
         else {
             this.widgetService.updateWidget(this.widget).subscribe(function () {
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
                 // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
             });
         }
@@ -1563,13 +1850,13 @@ var WidgetHeaderComponent = /** @class */ (function () {
     WidgetHeaderComponent.prototype.delete = function () {
         var _this = this;
         this.widgetService.deleteWidget(this.wgId).subscribe(function () {
-            _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+            _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget'], { relativeTo: _this.activatedRoute });
         });
     };
     WidgetHeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
-            _this.uid = params['uid'];
+            // this.uid = params['uid'];
             _this.wid = params['wid'];
             _this.pid = params['pid'];
             _this.wgId = params['wgId'];
@@ -1604,7 +1891,7 @@ var WidgetHeaderComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/widget/widget-edit/widget-html/widget-html.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <div class=\"navbar-text pull-right\">\n      <button routerLink=\"../\" class=\"btn btn-link cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"updateHtml()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"text-name\">Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"text-name\"\n             placeholder=\"Name\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"html-editor\">HTML</label>\n      <quill-editor [(ngModel)]=\"widget.text\" name=\"text\" id=\"html-editor\" [ngModelOptions]=\"{standalone: true}\"></quill-editor>\n    </div>\n\n    <div class=\"from-group\">\n      <button (click)=\"deleteHtml()\" class=\"btn btn-danger btn-block\" type=\"button\">Delete</button>\n    </div>\n  </form>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a routerLink=\"../../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div *ngIf=\"noName\"\n       class=\"alert alert-danger\">\n    {{noNameMsg}}\n  </div>\n\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <div class=\"navbar-text pull-right\">\n      <button class=\"btn btn-link cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"updateHtml()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"text-name\">Name</label>\n      <input [(ngModel)] = \"widget.name\"\n             name = \"name\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"text-name\"\n             placeholder=\"Name\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"html-editor\">HTML</label>\n      <quill-editor [(ngModel)]=\"widget.text\" name=\"text\" id=\"html-editor\" [ngModelOptions]=\"{standalone: true}\"></quill-editor>\n    </div>\n\n    <div class=\"from-group\">\n      <button (click)=\"deleteHtml()\" class=\"btn btn-danger btn-block\" type=\"button\">Delete</button>\n    </div>\n  </form>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a routerLink=\"/profile\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1637,20 +1924,30 @@ var WidgetHtmlComponent = /** @class */ (function () {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.widgetService = widgetService;
-        this.widget = new __WEBPACK_IMPORTED_MODULE_2__models_widget_model_client__["a" /* Widget */]('', 'HTML', this.pid, '', '', '', '', false);
+        this.noName = false;
+        this.noNameMsg = 'Widget name is required!';
+        this.widget = new __WEBPACK_IMPORTED_MODULE_2__models_widget_model_client__["a" /* Widget */]('', '', 'HTML', this.pid, '', '', '', '', false);
     }
     WidgetHtmlComponent.prototype.updateHtml = function () {
         var _this = this;
+        this.name = this.widgetForm.value.name;
+        if (this.name === '') {
+            this.noName = true;
+            return;
+        }
+        else {
+            this.noName = false;
+        }
         if (this.wgId === undefined) {
             this.widgetService.createWidget(this.pid, this.widget).subscribe(function (widget) {
                 _this.widget = widget;
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
                 // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
             });
         }
         else {
             this.widgetService.updateWidget(this.widget).subscribe(function () {
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
                 // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
             });
         }
@@ -1658,18 +1955,17 @@ var WidgetHtmlComponent = /** @class */ (function () {
     WidgetHtmlComponent.prototype.deleteHtml = function () {
         var _this = this;
         this.widgetService.deleteWidget(this.wgId).subscribe(function () {
-            _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+            _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget'], { relativeTo: _this.activatedRoute });
         });
     };
     WidgetHtmlComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
-            _this.uid = params['uid'];
             _this.wid = params['wid'];
             _this.pid = params['pid'];
             _this.wgId = params['wgId'];
             if (_this.wgId === undefined) {
-                _this.widget = new __WEBPACK_IMPORTED_MODULE_2__models_widget_model_client__["a" /* Widget */]('', 'HTML', _this.pid, '', '', '', '', false);
+                _this.widget = new __WEBPACK_IMPORTED_MODULE_2__models_widget_model_client__["a" /* Widget */]('', '', 'HTML', _this.pid, '', '', '', '', false);
             }
             else {
                 return _this.widgetService.findWidgetById(_this.wgId).subscribe(function (widget) {
@@ -1720,7 +2016,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Search Flickr\n    </a>\n  </div>\n</nav>\n\n<div class = \"container\">\n  <div class=\"input-group\">\n    <input [(ngModel)]=\"searchText\" type=\"text\" class=\"form-control\"><span class=\"input-group-btn\">\n            <a (click)=\"searchPhotos()\" class=\"btn btn-default\" type=\"button\">\n                <span class=\"glyphicon glyphicon-search\"></span>\n            </a>\n        </span>\n  </div>\n\n  <div class=\"row\">\n    <div *ngFor = \"let pic of photos['photo']\"\n         class=\"col-xs-4\">\n      <img    (click)=\"selectPhoto(pic)\"\n              width=\"100%\"\n              [src] = \"['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' + pic.id + '_' + pic.secret + '_s.jpg']\"/>\n\n      <!--[src] = \"https://farm\" + photo.farm + \".staticflickr.com/\" + photo.server + \"/\" + photo.id + \"_\" + photo.secret + \"_\" + \"s.jpg\"/>-->\n      <p></p>\n    </div>\n  </div>\n\n</div>\n\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a href=\"../../../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Search Flickr\n    </a>\n  </div>\n</nav>\n\n<div class = \"container\">\n  <div class=\"input-group\">\n    <input [(ngModel)]=\"searchText\" type=\"text\" class=\"form-control\"><span class=\"input-group-btn\">\n            <a (click)=\"searchPhotos()\" class=\"btn btn-default\" type=\"button\">\n                <span class=\"glyphicon glyphicon-search\"></span>\n            </a>\n        </span>\n  </div>\n\n  <div class=\"row\">\n    <div *ngFor = \"let pic of photos['photo']\"\n         class=\"col-xs-4\">\n      <img    (click)=\"selectPhoto(pic)\"\n              width=\"100%\"\n              [src] = \"['https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' + pic.id + '_' + pic.secret + '_s.jpg']\"/>\n\n      <!--[src] = \"https://farm\" + photo.farm + \".staticflickr.com/\" + photo.server + \"/\" + photo.id + \"_\" + photo.secret + \"_\" + \"s.jpg\"/>-->\n      <p></p>\n    </div>\n  </div>\n\n</div>\n\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a href=\"/profile\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1754,12 +2050,12 @@ var FlickrImageSearchComponent = /** @class */ (function () {
         this.widgetService = widgetService;
         this.router = router;
         this.activatedRoute = activatedRoute;
-        this.widget = new __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__["a" /* Widget */]('', 'IMAGE', this.pageId, '', '', '', '', false);
+        this.widget = new __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__["a" /* Widget */]('', '', 'IMAGE', this.pageId, '', '', '', '', false);
     }
     FlickrImageSearchComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
-            _this.userId = params['uid'];
+            // this.userId = params['uid'];
             _this.websiteId = params['wid'];
             _this.pageId = params['pid'];
             // this.widgetId = params['wgId'];
@@ -1814,8 +2110,8 @@ var FlickrImageSearchComponent = /** @class */ (function () {
         var _this = this;
         var url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server;
         url += '/' + photo.id + '_' + photo.secret + '_b.jpg';
-        console.log(this.widget);
-        console.log(this.widget._id);
+        // console.log(this.widget);
+        // console.log(this.widget._id);
         this.widget.url = url;
         // const widget = {
         //   _id: this.userId,
@@ -1832,8 +2128,7 @@ var FlickrImageSearchComponent = /** @class */ (function () {
             .subscribe(function (data) {
             var result = data;
             if (result) {
-                _this.router.navigate(['/user/' + _this.userId +
-                        '/website/' + _this.websiteId + '/page/' + _this.pageId + '/widget']);
+                _this.router.navigate(['/user/website/' + _this.websiteId + '/page/' + _this.pageId + '/widget']);
             }
             else {
                 _this.error = 'failed!';
@@ -1861,7 +2156,7 @@ var FlickrImageSearchComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/widget/widget-edit/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <div class=\"navbar-text pull-right\">\n      <button routerLink=\"../\" (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\" class=\"btn btn-link cl-icon-padding cl-text-black\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"image-name\">Name</label>\n      <input type=\"text\" class=\"form-control\" id=\"image-name\" placeholder=\"Name\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-text\">Text</label>\n      <input [(ngModel)]=\"widget.text\"\n             name=\"text\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"image-text\"\n             placeholder=\"{{widget.text}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-URL\">URL</label>\n      <input [(ngModel)]=\"widget.url\"\n             name=\"url\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"image-URL\"\n             required\n             placeholder=\"{{widget.url}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-width\">Width</label>\n      <input [(ngModel)]=\"widget.width\"\n             name=\"width\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"image-width\"\n             placeholder=\"{{widget.width}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"myFile\">Upload</label>\n      <form ngNoForm action=\"{{baseUrl}}/api/upload\" method=\"post\" enctype=\"multipart/form-data\">\n        <input  name=\"myFile\" id=\"myFile\"  type=\"file\" class=\"form-control\"/>\n        <input  name=\"widgetId\" value=\"{{wgId}}\" style=\"display: none\"/>\n        <input  name=\"pageId\" value=\"{{pid}}\" style=\"display: none\"/>\n        <input  name=\"websiteId\" value=\"{{wid}}\" style=\"display: none\"/>\n        <input  name=\"userId\" value=\"{{uid}}\" style=\"display: none\"/>\n        <button type=\"submit\" class=\"btn btn-block btn-primary\">Upload Image</button>\n      </form>\n\n      <br>\n      <a class=\"btn btn-primary btn-block \"\n\n         [routerLink]=\"['/user/'+ uid + '/website/'+ wid +'/page/'+ pid +'/widget/'+ wgId +'/flickr']\" >Choose From Flickr</a>\n\n    </div>\n  </form>\n\n  <button (click)=\"delete()\" class=\"btn btn-link btn btn-danger btn-block\">Delete</button>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a href=\"../../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div *ngIf=\"noName\"\n       class=\"alert alert-danger\">\n    {{noNameMsg}}\n  </div>\n\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <div class=\"navbar-text pull-right\">\n      <button (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\" class=\"btn btn-link cl-icon-padding cl-text-black\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"image-name\">Name</label>\n      <input [(ngModel)] = \"widget.name\"\n             name = \"name\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"image-name\"\n             placeholder=\"Name\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-text\">Text</label>\n      <input [(ngModel)]=\"widget.text\"\n             name=\"text\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"image-text\"\n             placeholder=\"{{widget.text}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-URL\">URL</label>\n      <input [(ngModel)]=\"widget.url\"\n             name=\"url\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"image-URL\"\n             required\n             placeholder=\"{{widget.url}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-width\">Width</label>\n      <input [(ngModel)]=\"widget.width\"\n             name=\"width\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"image-width\"\n             placeholder=\"{{widget.width}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"myFile\">Upload</label>\n      <form ngNoForm action=\"{{baseUrl}}/api/upload\" method=\"post\" enctype=\"multipart/form-data\">\n        <input  name=\"myFile\" id=\"myFile\"  type=\"file\" class=\"form-control\"/>\n        <input  name=\"widgetId\" value=\"{{wgId}}\" style=\"display: none\"/>\n        <input  name=\"pageId\" value=\"{{pid}}\" style=\"display: none\"/>\n        <input  name=\"websiteId\" value=\"{{wid}}\" style=\"display: none\"/>\n        <input  name=\"userId\" value=\"{{uid}}\" style=\"display: none\"/>\n        <button type=\"submit\" class=\"btn btn-block btn-info\">Upload Image</button>\n      </form>\n\n      <br>\n      <a class=\"btn btn-primary btn-block \"\n\n         [routerLink]=\"['/user/website/'+ wid +'/page/'+ pid +'/widget/'+ wgId +'/flickr']\" >Choose From Flickr</a>\n\n    </div>\n  </form>\n\n  <button (click)=\"delete()\" class=\"btn btn-link btn btn-danger btn-block\">Delete</button>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a href=\"/profile\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1876,6 +2171,7 @@ module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"containe
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1891,40 +2187,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WidgetImageComponent = /** @class */ (function () {
-    function WidgetImageComponent(activatedRoute, router, widgetService) {
+    function WidgetImageComponent(activatedRoute, router, widgetService, sharedService) {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.widgetService = widgetService;
-        this.widget = new __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__["a" /* Widget */]('', 'IMAGE', this.pid, '', '', '', '', false);
+        this.sharedService = sharedService;
+        this.noName = false;
+        this.noNameMsg = 'Widget name is required!';
+        this.widget = new __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__["a" /* Widget */]('', '', 'IMAGE', this.pid, '', '', '', '', false);
     }
     WidgetImageComponent.prototype.update = function () {
         var _this = this;
+        this.name = this.widgetForm.value.name;
+        if (this.name === '') {
+            this.noName = true;
+            return;
+        }
+        else {
+            this.noName = false;
+        }
         if (this.wgId === undefined) {
             this.widgetService.createWidget(this.pid, this.widget).subscribe(function (widget) {
                 _this.widget = widget;
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
-                // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
+                // this.router.navigate(['https://web-app-maker-angular-4.herokuapp.com/user/', 'website', this.wid, 'page', this.pid, 'widget']);
             });
         }
         else {
             this.widgetService.updateWidget(this.widget).subscribe(function () {
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
-                // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
+                // this.router.navigate(['https://web-app-maker-angular-4.herokuapp.com/user/', 'website', this.wid, 'page', this.pid, 'widget']);
             });
         }
     };
     WidgetImageComponent.prototype.delete = function () {
         var _this = this;
         this.widgetService.deleteWidget(this.wgId).subscribe(function () {
-            _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+            _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget'], { relativeTo: _this.activatedRoute });
         });
     };
     WidgetImageComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */].baseUrl;
         this.activatedRoute.params.subscribe(function (params) {
-            _this.uid = params['uid'];
+            var user = _this.sharedService.user;
+            _this.uid = user['_id'];
             _this.pid = params['pid'];
             _this.wid = params['wid'];
             _this.wgId = params['wgId'];
@@ -1956,7 +2265,8 @@ var WidgetImageComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */],
             __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_4__services_widget_service_client__["a" /* WidgetService */]])
+            __WEBPACK_IMPORTED_MODULE_4__services_widget_service_client__["a" /* WidgetService */],
+            __WEBPACK_IMPORTED_MODULE_6__services_shared_service__["a" /* SharedService */]])
     ], WidgetImageComponent);
     return WidgetImageComponent;
 }());
@@ -1968,7 +2278,7 @@ var WidgetImageComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/widget/widget-edit/widget-text/widget-text.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <div class=\"navbar-text pull-right\">\n      <button routerLink=\"../\" class=\"btn btn-link cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"updateText()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"text-name\">Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"text-name\"\n             placeholder=\"Name\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"text-text\">Text</label>\n      <input [(ngModel)]=\"widget.text\"\n             name=\"text\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"text-text\"\n             placeholder=\"{{widget.text}}\"\n             [ngModelOptions]=\"{standalone: true}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"text-rows\">Rows</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"text-rows\"\n             placeholder=\"Rows\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"text-placeholder\">Placeholder</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"text-placeholder\"\n             placeholder=\"Placeholder\">\n    </div>\n\n    <div class=\"input-group\">\n      <input type=\"text\"\n             readonly\n             value=\"Formatted\"\n             class=\"form-control\"/>\n      <span class=\"input-group-addon\">\n        <input [(ngModel)]=\"widget.formatted\" type=\"checkbox\" [ngModelOptions]=\"{standalone: true}\"/></span>\n    </div>\n\n    <div class=\"from-group\">\n      <button (click)=\"deleteText()\" class=\"btn btn-danger btn-block\" type=\"button\">Delete</button>\n    </div>\n  </form>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a routerLink=\"../../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div *ngIf=\"noName\"\n       class=\"alert alert-danger\">\n    {{noNameMsg}}\n  </div>\n\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n\n    <div class=\"navbar-text pull-right\">\n      <button class=\"btn btn-link cl-icon-padding cl-text-black\" (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"updateText()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"text-name\">Name</label>\n      <input [(ngModel)] = \"widget.name\"\n             name = \"name\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"text-name\"\n             placeholder=\"Name\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"text-text\">Text</label>\n      <input [(ngModel)]=\"widget.text\"\n             name=\"text\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"text-text\"\n             placeholder=\"{{widget.text}}\"\n             [ngModelOptions]=\"{standalone: true}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"text-rows\">Rows</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"text-rows\"\n             placeholder=\"Rows\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"text-placeholder\">Placeholder</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"text-placeholder\"\n             placeholder=\"Placeholder\">\n    </div>\n\n    <div class=\"input-group\">\n      <input type=\"text\"\n             readonly\n             value=\"Formatted\"\n             class=\"form-control\"/>\n      <span class=\"input-group-addon\">\n        <input [(ngModel)]=\"widget.formatted\" type=\"checkbox\" [ngModelOptions]=\"{standalone: true}\"/></span>\n    </div>\n\n    <div class=\"from-group\">\n      <button (click)=\"deleteText()\" class=\"btn btn-danger btn-block\" type=\"button\">Delete</button>\n    </div>\n  </form>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a routerLink=\"/profile\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -2001,20 +2311,30 @@ var WidgetTextComponent = /** @class */ (function () {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.widgetService = widgetService;
-        this.widget = new __WEBPACK_IMPORTED_MODULE_2__models_widget_model_client__["a" /* Widget */]('', 'TEXT', this.pid, '', '', '', '', false);
+        this.noName = false;
+        this.noNameMsg = 'Widget name is required!';
+        this.widget = new __WEBPACK_IMPORTED_MODULE_2__models_widget_model_client__["a" /* Widget */]('', '', 'TEXT', this.pid, '', '', '', '', false);
     }
     WidgetTextComponent.prototype.updateText = function () {
         var _this = this;
+        this.name = this.widgetForm.value.name;
+        if (this.name === '') {
+            this.noName = true;
+            return;
+        }
+        else {
+            this.noName = false;
+        }
         if (this.wgId === undefined) {
             this.widgetService.createWidget(this.pid, this.widget).subscribe(function (widget) {
                 _this.widget = widget;
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
                 // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
             });
         }
         else {
             this.widgetService.updateWidget(this.widget).subscribe(function () {
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
                 // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
             });
         }
@@ -2022,13 +2342,13 @@ var WidgetTextComponent = /** @class */ (function () {
     WidgetTextComponent.prototype.deleteText = function () {
         var _this = this;
         this.widgetService.deleteWidget(this.wgId).subscribe(function () {
-            _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+            _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget'], { relativeTo: _this.activatedRoute });
         });
     };
     WidgetTextComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
-            _this.uid = params['uid'];
+            // this.uid = params['uid'];
             _this.wid = params['wid'];
             _this.pid = params['pid'];
             _this.wgId = params['wgId'];
@@ -2063,7 +2383,7 @@ var WidgetTextComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/widget/widget-edit/widget-youtube/widget-youtube.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <button routerLink=\"../\" (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\" class=\"btn btn-link cl-icon-padding cl-text-black\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <form (ngSubmit)=\"update()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"youtube-name\">Name</label>\n      <input type=\"text\" class=\"form-control\" id=\"youtube-name\" placeholder=\"Name\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"youtube-text\">Text</label>\n      <input [(ngModel)]=\"widget.text\"\n             name=\"text\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"youtube-text\"\n             placeholder=\"{{widget.text}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"youtube-URL\">URL</label>\n      <input [(ngModel)]=\"widget.url\"\n             name=\"url\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"youtube-URL\"\n             placeholder=\"{{widget.url}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"youtube-width\">Width</label>\n      <input [(ngModel)]=\"widget.width\"\n             name=\"width\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"youtube-width\"\n             placeholder=\"{{widget.width}}\">\n    </div>\n  </form>\n  <button routerLink=\"../\" (click)=\"delete()\" class=\"btn btn-danger btn-block\" href=\"#\">Delete</button>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a href=\"../../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div *ngIf=\"noName\"\n       class=\"alert alert-danger\">\n    {{noNameMsg}}\n  </div>\n\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <button (click)=\"f.ngSubmit.emit()\" [disabled]=\"!f.valid\" class=\"btn btn-link cl-icon-padding cl-text-black\">\n          <span class=\"glyphicon glyphicon-ok\">\n          </span>\n      </button>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets Edit\n    </a>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <form (ngSubmit)=\"update()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"youtube-name\">Name</label>\n      <input [(ngModel)] = \"widget.name\"\n             name = \"name\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"youtube-name\"\n             placeholder=\"Name\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"youtube-text\">Text</label>\n      <input [(ngModel)]=\"widget.text\"\n             name=\"text\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"youtube-text\"\n             placeholder=\"{{widget.text}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"youtube-URL\">URL</label>\n      <input [(ngModel)]=\"widget.url\"\n             name=\"url\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"youtube-URL\"\n             placeholder=\"{{widget.url}}\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"youtube-width\">Width</label>\n      <input [(ngModel)]=\"widget.width\"\n             name=\"width\"\n             type=\"text\"\n             class=\"form-control\"\n             id=\"youtube-width\"\n             placeholder=\"{{widget.width}}\">\n    </div>\n  </form>\n  <button (click)=\"delete()\" class=\"btn btn-danger btn-block\">Delete</button>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a href=\"/profile\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -2096,28 +2416,38 @@ var WidgetYoutubeComponent = /** @class */ (function () {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.widgetService = widgetService;
-        this.widget = new __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__["a" /* Widget */]('', 'YOUTUBE', this.pid, '', '', '', '', false);
+        this.noName = false;
+        this.noNameMsg = 'Widget name is required!';
+        this.widget = new __WEBPACK_IMPORTED_MODULE_4__models_widget_model_client__["a" /* Widget */]('', '', 'YOUTUBE', this.pid, '', '', '', '', false);
     }
     WidgetYoutubeComponent.prototype.update = function () {
         var _this = this;
+        this.name = this.widgetForm.value.name;
+        if (this.name === '') {
+            this.noName = true;
+            return;
+        }
+        else {
+            this.noName = false;
+        }
         if (this.wgId === undefined) {
             this.widgetService.createWidget(this.pid, this.widget).subscribe(function (widget) {
                 _this.widget = widget;
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
                 // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
             });
         }
         else {
             this.widgetService.updateWidget(this.widget).subscribe(function () {
-                _this.router.navigate(['/user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+                _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget']);
                 // this.router.navigate(['../'], {relativeTo: this.activatedRoute});
             });
         }
     };
     WidgetYoutubeComponent.prototype.delete = function () {
         var _this = this;
-        this.widgetService.deleteWidget(this.widget._id).subscribe(function () {
-            _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+        this.widgetService.deleteWidget(this.wgId).subscribe(function () {
+            _this.router.navigate(['/user', 'website', _this.wid, 'page', _this.pid, 'widget'], { relativeTo: _this.activatedRoute });
         });
     };
     WidgetYoutubeComponent.prototype.ngOnInit = function () {
@@ -2125,7 +2455,7 @@ var WidgetYoutubeComponent = /** @class */ (function () {
         this.activatedRoute.params.subscribe(function (params) {
             _this.wgId = params['wgId'];
             _this.pid = params['pid'];
-            _this.uid = params['uid'];
+            // this.uid = params['uid'];
             _this.wid = params['wid'];
             if (_this.wgId !== undefined) {
                 _this.activatedRoute.params.subscribe(function (widget) {
@@ -2203,7 +2533,7 @@ var OrderByPipe = /** @class */ (function () {
 /***/ "../../../../../src/app/views/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../..\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"./new\" class=\"cl-icon-padding cl-text-black\">\n          <span class=\"glyphicon glyphicon-plus\">\n          </span>\n      </a>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets\n    </a>\n  </div>\n</nav>\n\n<!--改一改-->\n<div class=\"container container-padding\" appSortable (newIndexes)=\"reorderWidgets($event)\">\n<!--<div class=\"container container-padding\">-->\n<div *ngFor=\"let widget of widgets | orderBy\" class=\"container cl-container-padding\">\n  <div [ngSwitch]=\"widget.widgetType\">\n\n    <div *ngSwitchCase=\"'HEADER'\">\n      <a class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </a>\n      <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n\n      <div [ngSwitch]=\"widget.size\">\n        <h1 *ngSwitchCase=\"1\">{{widget.text}}</h1>\n        <h2 *ngSwitchCase=\"2\">{{widget.text}}</h2>\n        <h3 *ngSwitchCase=\"3\">{{widget.text}}</h3>\n        <h4 *ngSwitchCase=\"4\">{{widget.text}}</h4>\n        <h5 *ngSwitchCase=\"5\">{{widget.text}}</h5>\n        <h6 *ngSwitchCase=\"6\">{{widget.text}}</h6>\n      </div>\n    </div>\n\n    <div *ngSwitchCase=\"'IMAGE'\">\n      <div>\n        <a class=\"pull-right\">\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </a>\n        <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n        <img class=\"img-responsive img-rounded cl-widget-images\"\n             src=\"{{widget.url}}\">\n      </div>\n    </div>\n\n\n    <div *ngSwitchCase=\"'YOUTUBE'\" class=\"youtube-widget\">\n      <div class=\"embed-responsive embed-responsive-16by9\">\n        <iframe width=\"640\" height=\"360\" [src]=getURL(widget.url) frameborder=\"0\" allowfullscreen></iframe>\n        <a class=\"pull-right\">\n          <span class=\"glyphicon glyphicon-menu-hamburger\" style=\"background-color: white\"></span>\n        </a>\n        <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n          <span class=\"glyphicon glyphicon-cog\" style=\"background-color: white\"></span>\n        </a>\n      </div>\n    </div>\n\n\n    <div *ngSwitchCase=\"'TEXT'\">\n      <a class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </a>\n      <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n      {{widget.text}}\n    </div>\n\n    <div *ngSwitchCase=\"'HTML'\">\n      <a class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </a>\n      <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n      <div [innerHTML]=\"widget.text\"></div>\n    </div>\n\n  </div>\n</div>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a routerLink=\"../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n\n    <div class=\"pull-left navbar-text\">\n      <a routerLink=\".\" class=\"cl-icon-padding cl-text-black\">\n        <span class=\"glyphicon glyphicon-play\"></span>\n      </a>\n      <a routerLink=\".\" class=\"cl-icon-padding cl-text-black\">\n        <span class=\"glyphicon glyphicon-eye-open\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"../..\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"glyphicon glyphicon-chevron-left\">\n          </span>\n      </a>\n    </div>\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"./new\" class=\"cl-icon-padding cl-text-black\">\n          <span class=\"glyphicon glyphicon-plus\">\n          </span>\n      </a>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n      Widgets\n    </a>\n  </div>\n</nav>\n\n<!--改一改-->\n<div class=\"container container-padding\" appSortable (newIndexes)=\"reorderWidgets($event)\">\n<!--<div class=\"container container-padding\">-->\n<div *ngFor=\"let widget of widgets | orderBy\" class=\"container cl-container-padding\">\n  <div [ngSwitch]=\"widget.widgetType\">\n\n    <div *ngSwitchCase=\"'HEADER'\">\n      <a class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </a>\n      <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n\n      <div [ngSwitch]=\"widget.size\">\n        <h1 *ngSwitchCase=\"1\">{{widget.text}}</h1>\n        <h2 *ngSwitchCase=\"2\">{{widget.text}}</h2>\n        <h3 *ngSwitchCase=\"3\">{{widget.text}}</h3>\n        <h4 *ngSwitchCase=\"4\">{{widget.text}}</h4>\n        <h5 *ngSwitchCase=\"5\">{{widget.text}}</h5>\n        <h6 *ngSwitchCase=\"6\">{{widget.text}}</h6>\n      </div>\n    </div>\n\n    <div *ngSwitchCase=\"'IMAGE'\">\n      <div>\n        <a class=\"pull-right\">\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </a>\n        <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n        <img class=\"img-responsive img-rounded cl-widget-images\"\n             src=\"{{widget.url}}\">\n      </div>\n    </div>\n\n\n    <div *ngSwitchCase=\"'YOUTUBE'\" class=\"youtube-widget\">\n      <div class=\"embed-responsive embed-responsive-16by9\">\n        <iframe width=\"640\" height=\"360\" [src]=getURL(widget.url) frameborder=\"0\" allowfullscreen></iframe>\n        <a class=\"pull-right\">\n          <span class=\"glyphicon glyphicon-menu-hamburger\" style=\"background-color: white\"></span>\n        </a>\n        <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n          <span class=\"glyphicon glyphicon-cog\" style=\"background-color: white\"></span>\n        </a>\n      </div>\n    </div>\n\n\n    <div *ngSwitchCase=\"'TEXT'\">\n      <a class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </a>\n      <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n      {{widget.text}}\n    </div>\n\n    <div *ngSwitchCase=\"'HTML'\">\n      <a class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </a>\n      <a routerLink=\"./{{widget._id}}\" class=\"pull-right\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n      <div [innerHTML]=\"widget.text\"></div>\n    </div>\n\n  </div>\n</div>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n\n      <a routerLink=\"/profile\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n\n    </div>\n\n    <div class=\"pull-left navbar-text\">\n      <a routerLink=\".\" class=\"cl-icon-padding cl-text-black\">\n        <span class=\"glyphicon glyphicon-play\"></span>\n      </a>\n      <a routerLink=\".\" class=\"cl-icon-padding cl-text-black\">\n        <span class=\"glyphicon glyphicon-eye-open\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -2278,8 +2608,8 @@ var WidgetListComponent = /** @class */ (function () {
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
     production: false,
-    // baseUrl: 'http://localhost:4200'
-    baseUrl: 'https://cs5610-webdev-jiawei-zhang.herokuapp.com'
+    baseUrl: 'http://localhost:4200'
+    // baseUrl: 'https://cs5610-webdev-jiawei-zhang.herokuapp.com'
 };
 // ng build
 // node server.js
