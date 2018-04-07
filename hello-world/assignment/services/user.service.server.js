@@ -5,6 +5,7 @@ var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function (app, models) {
   var userModel = require("../model/user/user.model.server");
+
   var facebookConfig = {
     clientID     : process.env.clientID,
     clientSecret : process.env.clientSecret,
@@ -30,7 +31,7 @@ module.exports = function (app, models) {
       failureRedirect: 'http://www.google.com'
   }));
 
-  app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+  app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
 
   // passport config
   passport.use(new LocalStrategy(localStrategy));
