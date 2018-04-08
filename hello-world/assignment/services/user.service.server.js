@@ -31,7 +31,7 @@ module.exports = function (app, models) {
       failureRedirect: '/login'
   }));
 
-  app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
+  app.get ('/api/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
   // passport config
   passport.use(new LocalStrategy(localStrategy));
