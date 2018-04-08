@@ -1,16 +1,16 @@
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
-var bcrypt = require("bcrypt-nodejs");
-
 module.exports = function (app, models) {
-  var userModel = require("../model/user/user.model.server");
-
   var facebookConfig = {
     clientID     : process.env.FACEBOOK_CLIENT_ID,
     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL  : process.env.FACEBOOK_CALLBACK_URL
   };
+
+  var passport = require('passport');
+  var LocalStrategy = require('passport-local').Strategy;
+  var FacebookStrategy = require('passport-facebook').Strategy;
+  var bcrypt = require("bcrypt-nodejs");
+  var userModel = require("../model/user/user.model.server");
+
 
   app.post("/api/user", createUser);
   app.get("/api/user", findUser);
