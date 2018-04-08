@@ -1109,7 +1109,7 @@ var PageNewComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/views/users/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n  {{errorMsg}}\n</div>\n\n  <div *ngIf=\"noUsername\"\n       class=\"alert alert-danger\">\n    {{noUsernameMsg}}\n  </div>\n\n  <div *ngIf=\"noPassword\"\n       class=\"alert alert-danger\">\n    {{noPasswordMsg}}\n  </div>\n\n  <h1>Login</h1>\n\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\n    <!--<label>Username</label>-->\n    <input type=\"text\"\n           class=\"form-control\"\n           placeholder=\"username\"\n           name=\"username\"\n           ngModel\n           required\n           #username=\"ngModel\"/>\n    <!--<span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">Username missing!</span>-->\n\n    <!--<label>Password</label>-->\n    <input type=\"password\"\n           class=\"form-control\"\n           placeholder=\"password\"\n           name=\"password\"\n           ngModel\n           required\n           #password=\"ngModel\"/>\n    <!--<span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">Password missing!</span>-->\n\n    <!--<button class=\"btn btn-primary btn-block\" type=\"submit\" [disabled]=\"!f.valid\">Login</button>-->\n    <button class=\"btn btn-primary btn-block\" type=\"submit\">Login</button>\n    <button class=\"btn btn-success btn-block\" type=\"button\" (click)=\"register()\">Register</button>\n    <!--<button class=\"btn btn-info btn-block\" type=\"button\" >Facebook</button>-->\n    <a href=\"/facebook/login\" class=\"btn btn-info btn-block\"> <span class=\"fa fa-facebook\"></span>\n      Facebook\n    </a>\n  </form>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n  {{errorMsg}}\n</div>\n\n  <div *ngIf=\"noUsername\"\n       class=\"alert alert-danger\">\n    {{noUsernameMsg}}\n  </div>\n\n  <div *ngIf=\"noPassword\"\n       class=\"alert alert-danger\">\n    {{noPasswordMsg}}\n  </div>\n\n  <h1>Login</h1>\n\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\n    <!--<label>Username</label>-->\n    <input type=\"text\"\n           class=\"form-control\"\n           placeholder=\"username\"\n           name=\"username\"\n           ngModel\n           required\n           #username=\"ngModel\"/>\n    <!--<span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">Username missing!</span>-->\n\n    <!--<label>Password</label>-->\n    <input type=\"password\"\n           class=\"form-control\"\n           placeholder=\"password\"\n           name=\"password\"\n           ngModel\n           required\n           #password=\"ngModel\"/>\n    <!--<span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">Password missing!</span>-->\n\n    <!--<button class=\"btn btn-primary btn-block\" type=\"submit\" [disabled]=\"!f.valid\">Login</button>-->\n    <button class=\"btn btn-primary btn-block\" type=\"submit\">Login</button>\n    <button class=\"btn btn-success btn-block\" type=\"button\" (click)=\"register()\">Register</button>\n    <!--<button class=\"btn btn-info btn-block\" type=\"button\" >Facebook</button>-->\n    <a href=\"{{baseUrl}}/api/facebook\" class=\"btn btn-info btn-block\"> <span class=\"fa fa-facebook\"></span>\n      Facebook\n    </a>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -1124,6 +1124,7 @@ module.exports = "<div class=\"container-fluid\">\n\n  <div *ngIf=\"errorFlag\"\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1139,6 +1140,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(userService, router, sharedService) {
         this.userService = userService;
@@ -1146,6 +1148,7 @@ var LoginComponent = /** @class */ (function () {
         this.sharedService = sharedService;
         this.errorFlag = false;
         this.errorMsg = 'Invalid username or password!';
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_6__environments_environment__["a" /* environment */].baseUrl;
         this.noUsername = false;
         this.noPassword = false;
         this.noUsernameMsg = 'Username is required!';
@@ -2608,8 +2611,8 @@ var WidgetListComponent = /** @class */ (function () {
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
     production: false,
-    baseUrl: 'http://localhost:4200'
-    // baseUrl: 'https://cs5610-webdev-jiawei-zhang.herokuapp.com'
+    // baseUrl: 'http://localhost:4200'
+    baseUrl: 'https://cs5610-webdev-jiawei-zhang.herokuapp.com'
 };
 // ng build
 // node server.js

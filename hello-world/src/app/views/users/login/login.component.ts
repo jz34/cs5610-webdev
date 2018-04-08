@@ -5,6 +5,7 @@ import {User} from '../../../models/user.model.client';
 import {NgForm} from '@angular/forms';
 import 'rxjs/Rx';
 import {SharedService} from '../../../services/shared.service';
+import {environment} from '../../../../environments/environment';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   password: String; // see usage as two-way data binding
   errorFlag = false;
   errorMsg = 'Invalid username or password!';
+  baseUrl = environment.baseUrl;
 
   noUsername = false;
   noPassword = false;
