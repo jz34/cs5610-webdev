@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale = 1, user-scalable = no">
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <title>edit</title>
+</head>
+<body class="body-black">
+<nav class="navbar navbar-default header-margin-bottom">
+    <div class="supreme-font">
+        <a class="pull-left white_text" href="#"><i class="fa fa-chevron-left"></i></a>
+        <span class="supreme-text-logo"><a class="a-no-color a-no-hover a-no-visited" href="home.html">S U P R E M E</a></span>
+
+    </div>
+    <div>
+        <a class="pull-right white_text" href="#"><i class="fa fa-check"></i></a>
+    </div>
+</nav>
+<p class="center_text supreme-font white_text text-font-size">Edit Item</p>
+<form>
+    <!-- [(ngModel)]="name"
+                name="name"
+                type="text"
+                class="form-control"
+                placeholder="{{name}}"-->
+    <div class="form-group">
+        <div class="center_input input_padding">
+            <label class="white_text supreme-font">Name</label>
+            <input type="text" class="form-control supreme-font">
+        </div>
+
+        <div class="center_input input_padding">
+            <label class="white_text supreme-font">Color</label>
+            <input type="text" class="form-control supreme-font">
+        </div>
+
+        <div class="center_input input_padding">
+            <label class="white_text supreme-font">Price</label>
+            <input type="text" class="form-control supreme-font">
+        </div>
+        <div class="center_input input_padding">
+            <label class="white_text supreme-font">Image</label>
+            <input type="text" class="form-control supreme-font">
+        </div>
+        <div class="center_input input_padding">
+            <label class="white_text supreme-font">Category</label>
+            <select name="size">
+                <option>Jacket</option>
+                <option>Shirt</option>
+                <option>Top</option>
+                <option>Sweatshirt</option>
+                <option>Pants</option>
+                <option>Hat</option>
+                <option>Bag</option>
+                <option>Skate</option>
+                <option>Accessory</option>
+            </select>
+        </div>
+
+        <div class="center_input input_padding">
+            <label class="white_text supreme-font">Size</label>
+            <select name="size">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+                <option>XLarge</option>
+                <option>noSize</option>
+            </select>
+        </div>
+    </div>
+</form>
+<button class="btn btn-outline-danger btn-block center_input supreme-font white_text">Upload Imgage</button>
+<button class="btn btn-outline-danger btn-block center_input supreme-font white_text">Image from Flickr</button>
+<button class="btn btn-outline-danger btn-block center_input supreme-font white_text">Delete</button>
+<button class="btn btn-outline-danger btn-block center_input supreme-font white_text">Cancel</button>
+<div class=" card-footer footer-color fixed-bottom">
+    <a class="pull-right white_text" href=" "><i class="fa fa-user"></i></a>
+</div>
+</body>
+
+</html>
